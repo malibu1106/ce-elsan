@@ -1,0 +1,8 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore generated CSS file
+src/css/output.css  # Remplace par le chemin réel de ton fichier généré si besoin
+
+# Ignore lock files (selon si tu utilises npm ou yarn)
+package-lock.json
