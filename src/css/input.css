@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* INFO MESSAGE */
+.info_message{
+    animation: fade_out 3s 1s forwards;
+}
+
+/* NAV */
+.nav_icons{
+    cursor:pointer;
+}
+
+/* INDEX */
+input[type=submit]{
+    cursor:pointer;
+}
+
+/* ANIMATIONS */
+@keyframes fade_out {
+    0% {
+        opacity: 1;
+        z-index: 1;
+    }
+    100% {
+        opacity: 0;
+        z-index: -1;
+    }
+}
