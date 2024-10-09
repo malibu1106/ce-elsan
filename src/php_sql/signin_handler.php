@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email']) && !empty($_
         if (password_verify($password, $hashed_password)) { 
             $_SESSION["info_message"] = "Connexion réussie";
             $_SESSION['logged_in'] = 1;
-            $_SESSION['logged_user_id'] = $user['user_id'];
+            $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['first_name'] = $user['first_name'];
             $_SESSION['last_name'] = $user['last_name'];
             $_SESSION['role'] = $user['role'];

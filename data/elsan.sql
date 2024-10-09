@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : lun. 07 oct. 2024 à 16:46
+-- Généré le : mer. 09 oct. 2024 à 09:43
 -- Version du serveur : 8.0.39
 -- Version de PHP : 8.2.8
 
@@ -77,6 +77,18 @@ CREATE TABLE `news` (
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Déchargement des données de la table `news`
+--
+
+INSERT INTO `news` (`news_id`, `title`, `text`, `date`) VALUES
+(1, 'Le chocolat au lait', 'Le chocolat au lait est un mélange savoureux de cacao, de lait et de sucre, offrant une texture crémeuse et un goût doux. Populaire dans les desserts et les collations, il est apprécié pour sa douceur équilibrée et son fondant en bouche.', '2024-10-07 21:58:52'),
+(2, 'La girafe dorée', 'La girafe dorée, créature rare et imaginaire, évoque l\'élégance et la grandeur. Sa silhouette élancée, recouverte d\'une teinte dorée scintillante, lui confère un air majestueux et presque mystique. Ce symbole de beauté et de noblesse captive l\'imagination avec son éclat inégalé.', '2024-10-09 21:59:06'),
+(3, 'La différence entre un pigeon', 'La différence entre un pigeon et d\'autres oiseaux réside principalement dans son adaptation à la vie urbaine. Oiseau commun des villes, le pigeon est souvent associé aux environnements humains, se nourrissant de déchets et vivant en groupes.', '2024-10-14 21:59:21'),
+(4, 'Le chocolat au lait', 'Le chocolat au lait est un mélange savoureux de cacao, de lait et de sucre, offrant une texture crémeuse et un goût doux. Populaire dans les desserts et les collations, il est apprécié pour sa douceur équilibrée et son fondant en bouche.', '2024-10-18 21:58:51'),
+(5, 'La girafe dorée', 'La girafe dorée, créature rare et imaginaire, évoque l\'élégance et la grandeur. Sa silhouette élancée, recouverte d\'une teinte dorée scintillante, lui confère un air majestueux et presque mystique. Ce symbole de beauté et de noblesse captive l\'imagination avec son éclat inégalé.', '2024-10-19 21:59:06'),
+(6, 'La différence entre un pigeon', 'La différence entre un pigeon et d\'autres oiseaux réside principalement dans son adaptation à la vie urbaine. Oiseau commun des villes, le pigeon est souvent associé aux environnements humains, se nourrissant de déchets et vivant en groupes.', '2024-10-24 21:59:21');
+
 -- --------------------------------------------------------
 
 --
@@ -85,9 +97,20 @@ CREATE TABLE `news` (
 
 CREATE TABLE `permanences` (
   `permanence_id` int NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` varchar(255) NOT NULL,
+  `time` varchar(255) NOT NULL,
   `representative` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `permanences`
+--
+
+INSERT INTO `permanences` (`permanence_id`, `date`, `time`, `representative`) VALUES
+(1, '08/10/24', '13h30/14h30', 'Sabine'),
+(2, '14/10/24', '10h30/11h30', 'Corinne'),
+(3, '22/10/24', '15h30/16h30', 'Monique'),
+(4, '05/11/24', '13h30/14h30', 'Sabine');
 
 -- --------------------------------------------------------
 
@@ -105,6 +128,18 @@ CREATE TABLE `suggestions` (
   `user_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Déchargement des données de la table `suggestions`
+--
+
+INSERT INTO `suggestions` (`suggestion_id`, `company_name`, `description`, `image_url`, `date`, `address`, `user_id`) VALUES
+(1, 'Leclerc', 'Oui bon voilà alors ce serait cool d’avoir des réductions chez Leclerc', '../images/uploads/leclerc.png', '2024-10-07 22:12:48', '4 avenue du trésor, 58110 Biches', 1),
+(2, 'La chocolaterie', 'Oui bon voilà alors ce serait cool d’avoir des réductions à la chocolaterie de ma grande tante Tessy', '../images/uploads/chocolaterie.png', '2024-10-12 22:12:48', '4 avenue du général Louis, 58000 Nevers', 1),
+(3, 'Saveurs d’orient', 'J’adore les kebabs ! La viande et le pain sont faits maison, alors ça vaut le coup !', '../images/uploads/kebab.png', '2024-10-16 22:12:48', 'Pas loin de la cathédrale de Nevers', 1),
+(4, 'Leclerc', 'Oui bon voilà alors ce serait cool d’avoir des réductions chez Leclerc', '../images/uploads/leclerc.png', '2024-10-21 22:12:48', '4 avenue du trésor, 58110 Biches', 1),
+(5, 'La chocolaterie', 'Oui bon voilà alors ce serait cool d’avoir des réductions à la chocolaterie de ma grande tante Tessy', '../images/uploads/chocolaterie.png', '2024-10-25 22:12:48', '4 avenue du général Louis, 58000 Nevers', 1),
+(6, 'Saveurs d’orient', 'J’adore les kebabs ! La viande et le pain sont faits maison, alors ça vaut le coup !', '../images/uploads/kebab.png', '2024-10-30 22:12:48', 'Pas loin de la cathédrale de Nevers', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -117,8 +152,15 @@ CREATE TABLE `users` (
   `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(255) DEFAULT NULL
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `role`) VALUES
+(1, 'Roberto', 'De Sousa', 'malibu1106@gmail.com', '$2y$10$1fuHvL1XRZdo4tCBCQfy4Ow7mcdYM77mwKjGDrU1mTnUs0T.5ia9.', 'user');
 
 -- --------------------------------------------------------
 
@@ -132,6 +174,17 @@ CREATE TABLE `votes` (
   `suggestion_id` int NOT NULL,
   `vote_value` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `votes`
+--
+
+INSERT INTO `votes` (`vote_id`, `user_id`, `suggestion_id`, `vote_value`) VALUES
+(1, 1, 1, 1),
+(2, 2, 1, 1),
+(3, 3, 1, -1),
+(4, 1, 6, 1),
+(5, 1, 5, 1);
 
 --
 -- Index pour les tables déchargées
@@ -211,31 +264,31 @@ ALTER TABLE `current_requests`
 -- AUTO_INCREMENT pour la table `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `news_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `permanences`
 --
 ALTER TABLE `permanences`
-  MODIFY `permanence_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `permanence_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `suggestions`
 --
 ALTER TABLE `suggestions`
-  MODIFY `suggestion_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `suggestion_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `vote_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `vote_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

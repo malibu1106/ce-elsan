@@ -7,6 +7,10 @@
 .info_message{
     animation: fade_out 3s 1s forwards;
 }
+.outline{
+    outline:solid black 1px;
+}
+
 
 /* NAV */
 .nav_icons{
@@ -22,7 +26,7 @@ input[type=submit]{
 @keyframes fade_out {
     0% {
         opacity: 1;
-        z-index: 1;
+        z-index: 30;
     }
     100% {
         opacity: 0;

@@ -1,14 +1,19 @@
-<nav class="bg-blue-800 p-2 h-16">
+<nav class="bg-blue-800 p-2 h-16 fixed top-0 w-[100%] z-20">
     <ul class="flex justify-between items-center w-full">
         <li class="w-1/4 flex justify-center items-center h-12">
             <h2 class="text-gray-100 text-xl font-bold">CE Elsan</h2>
         </li>
 
+        <?php if (!isset($_SESSION['logged_in'])){
+        echo
+        '<div id="login_message" class="fixed top-0 p-2 h-16 w-[100%] flex items-center justify-center font-bold lg:text-2xl text-gray-100 z-10"></div>';}
+        ?>
 
-        <?php if (isset($_SESSION)){
+
+        <?php if (isset($_SESSION['logged_in'])){
             echo          
         '<li class="w-1/4 flex justify-center">
-                <img class="nav_icons h-12" src="../images/icons/home.png" alt="bouton du menu" id="menu_bouton">
+                <a href="../index.php"><img class="nav_icons h-12" src="../images/icons/home.png" alt="bouton du menu" id="menu_bouton"></a>
         </li>';}
         ?>
 
@@ -21,7 +26,7 @@
         </li>';}
         ?>
 
-        <?php if (isset($_SESSION)){
+        <?php if (isset($_SESSION['logged_in'])){
             echo
         '<li class="w-1/4 flex justify-center">
             <a href="profile.php">
@@ -37,9 +42,10 @@ if (isset($_SESSION['info_message']) && !empty($_SESSION['info_message'])){
     
 
     echo
-    '<div class="info_message bg-blue-800 p-2 h-16 absolute top-0 w-[100%] flex items-center justify-center font-bold lg:text-2xl text-gray-100">';
+    '<div class="info_message bg-blue-800 p-2 h-16 absolute top-0 w-[100%] flex items-center justify-center font-bold lg:text-2xl text-gray-100 z-30">';
     echo $_SESSION['info_message'];
     echo '</div>';    
 
     $_SESSION['info_message'] = "";}
 ?>
+<div class="mb-24"></div>

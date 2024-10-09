@@ -56,15 +56,15 @@ session_start();
 
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8 2xl:m-16">Bonjour <?=$_SESSION['first_name']?> !<a href="../php_sql/logout.php"> [X]</a></h1>
-<main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
+<h1 class="text-blue-800 font-bold text-4xl text-center m-8 2xl:mt-32">Bonjour <?=$_SESSION['first_name']?> !<a href="../php_sql/logout.php"> [X]</a></h1>
+<main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto 2xl:flex-row 2xl:gap-24 2xl:justify-between 2xl:p-16">
 
 <section class="w-[96%] bg-green-700 mx-auto p-1 max-w-xl text-gray-100">
     
 
-    <div class="section_title flex justify-between p-2 ">
+    <div class="section_title flex justify-between p-2">
         <h3 class="font-bold text-xl">Permanences</h3>
-        <a href="#" class="font-semibold">Tout voir</a>        
+        <a href="permanences.php" class="font-semibold">Tout voir</a>        
     </div>
     <div class="container">
 
@@ -85,7 +85,7 @@ session_start();
 <section class="w-[96%] bg-orange-500 mx-auto p-1 max-w-xl text-gray-100">
     <div class="section_title flex justify-between p-2">
         <h3 class="font-bold text-xl">Actualités</h3>
-        <a href="#" class="font-semibold">Tout voir</a>        
+        <a href="news.php" class="font-semibold">Tout voir</a>        
     </div>
     <div class="container">
 
@@ -107,7 +107,7 @@ session_start();
 <section class="w-[96%] bg-yellow-500 mx-auto p-1 max-w-xl text-gray-100">
     <div class="section_title flex justify-between p-2">
         <h3 class="font-bold text-xl">Suggestions</h3>
-        <a href="#" class="font-semibold">Tout voir</a>        
+        <a href="suggestions.php" class="font-semibold">Tout voir</a>        
     </div>
 
     <div class="container">
@@ -128,19 +128,20 @@ session_start();
 
 </section>
 
-<section class="w-[96%] bg-red-600 mx-auto p-1 max-w-xl">
-    <a href="#">
-        <h3 class="text-gray-100 font-bold text-3xl text-center m-4">Vos avantages</h3>
-    </a>
-</section>
-<section class="w-[96%] bg-violet-600 mx-auto p-1 max-w-xl">
-    <a href="#">
-        <h3 class="text-gray-100 font-bold text-3xl text-center m-4">Demandes en cours</h3>
-    </a>
-</section>
-
-
-</main>    
+<div class="container mx-auto max-w-xl">
+    <section class="w-[100%] bg-red-600 mx-auto p-1 max-w-xl">
+        <a href="#">
+            <h3 class="text-gray-100 font-bold text-3xl text-center m-4">Vos avantages</h3>
+        </a>
+    </section>
+    <section class="w-[100%] bg-violet-600 mx-auto p-1 max-w-xl mt-4">
+        <a href="#">
+            <h3 class="text-gray-100 font-bold text-3xl text-center m-4">Demandes en cours</h3>
+        </a>
+    </section>
+</div>      
+</main> 
+   
     
 
 </body>
