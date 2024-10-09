@@ -130,7 +130,7 @@ session_start();
 
 <div class="container mx-auto max-w-xl">
     <section class="w-[100%] bg-red-600 mx-auto p-1 max-w-xl">
-        <a href="#">
+        <a href="benefits.php">
             <h3 class="text-gray-100 font-bold text-3xl text-center m-4">Vos avantages</h3>
         </a>
     </section>
