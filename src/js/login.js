@@ -78,11 +78,11 @@ function togglePassword(inputId, eyeIcon) {
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        img.src = "images/icons/hide_password.png"; // Changer l'icône pour masquer
+        img.src = "../images/icons/hide_password.png"; // Changer l'icône pour masquer
         img.alt = "Masquer mot de passe";
     } else {
         passwordInput.type = "password";
-        img.src = "images/icons/show_password.png"; // Changer l'icône pour afficher
+        img.src = "../images/icons/show_password.png"; // Changer l'icône pour afficher
         img.alt = "Afficher mot de passe";
     }
 }

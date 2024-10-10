@@ -13,7 +13,7 @@ if (isset($_SESSION['logged_in'])) {
     <script src="js/login.js"></script>
     <title>Elsan</title>
 </head>
-<body class="">
+<body class="pb-8">
 
     <?php include 'includes/nav.php'; ?>
     

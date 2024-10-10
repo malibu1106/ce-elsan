@@ -52,7 +52,7 @@ session_start();
   <script src="js/script.js"></script>
   <title>Elsan</title>
 </head>
-<body class="">
+<body class="pb-8">
 
 <?php include '../includes/nav.php';?>
 

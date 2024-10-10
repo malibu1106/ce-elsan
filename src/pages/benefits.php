@@ -33,7 +33,7 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
   <script src="../js/script.js"></script>
   <title>Elsan</title>
 </head>
-<body class="">
+<body class="pb-8">
 
 <?php include '../includes/nav.php';?>
 
@@ -57,6 +57,10 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
     
     <div class="container flex flex-wrap justify-center" id="benefitsList">
     <?php
+    if (empty($benefits)) {
+        // Affichage du message si aucune demande n'est trouvée
+        echo '<p class="text-white text-lg text-center mt-4">Aucun résultat disponible.</p>';
+    } else {
     foreach ($benefits as $benefit) {
         // Affichage de l'avantage
         echo
@@ -64,7 +68,7 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
                 <img class="h-16 w-16 bg-white p-1 " src="' . htmlspecialchars($benefit['image_url']) . '" alt="logo de l\'entreprise">
                 ' . htmlspecialchars($benefit['company_name']) . '
             </div>';
-    }
+    }}
     ?>
     </div>
 </section>

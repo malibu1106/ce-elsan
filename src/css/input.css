@@ -22,7 +22,6 @@ input[type=submit]{
     cursor:pointer;
 }
 
-
 /* ANIMATIONS */
 @keyframes fade_out {
     0% {

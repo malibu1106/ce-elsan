@@ -40,7 +40,7 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
   <script src="../js/script.js"></script>
   <title>Elsan</title>
 </head>
-<body class="">
+<body class="pb-8">
 
 <?php include '../includes/nav.php';?>
 
@@ -72,7 +72,7 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
     <?php
     if (empty($requests)) {
         // Affichage du message si aucune demande n'est trouvée
-        echo '<p class="text-white text-lg text-center mt-4">Aucune demande disponible pour cette catégorie.</p>';
+        echo '<p class="text-white text-lg text-center mt-4">Aucun résultat disponible.</p>';
     } else {
         foreach ($requests as $request) {
             // Affichage de la demande

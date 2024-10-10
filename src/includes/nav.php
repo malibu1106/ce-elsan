@@ -26,14 +26,29 @@
         </li>';}
         ?>
 
-        <?php if (isset($_SESSION['logged_in'])){
-            echo
+<?php
+if (isset($_SESSION['logged_in'])) {
+    // Récupérer l'URL actuelle
+    $current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+    // Vérifier si l'URL actuelle contient /pages/profile.php
+    if (strpos($current_url, '/pages/profile.php') !== false) {
+        echo
+        '<li class="w-1/4 flex justify-center"> 
+            <a href="../php_sql/logout.php"> 
+                <img class="h-12" src="../images/icons/logout.png" alt="bouton déconnexion"> 
+            </a>
+        </li>';
+    } else {
+        echo
         '<li class="w-1/4 flex justify-center">
             <a href="profile.php">
                 <img class="h-12" src="../images/icons/user.png" alt="bouton accès profil">
             </a>
-        </li>';}
-        ?>
+        </li>';
+    }
+}
+?>
     </ul>
 </nav>
 
