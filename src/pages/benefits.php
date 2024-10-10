@@ -61,7 +61,7 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
         // Affichage de l'avantage
         echo
             '<div class="benefit w-1/3 flex flex-col p-2 items-center mt-8" onclick="showBenefitDetails(`' . htmlspecialchars($benefit['company_name']) . '`, `' . htmlspecialchars($benefit['address']) . '`, `' . htmlspecialchars($benefit['image_url']) . '`, `' . htmlspecialchars($benefit['description']) . '`)">
-                <img class="h-12 w-12" src="' . htmlspecialchars($benefit['image_url']) . '" alt="logo de l\'entreprise">
+                <img class="h-16 w-16 bg-white p-1 " src="' . htmlspecialchars($benefit['image_url']) . '" alt="logo de l\'entreprise">
                 ' . htmlspecialchars($benefit['company_name']) . '
             </div>';
     }
@@ -82,7 +82,7 @@ function showBenefitDetails(companyName, address, imageUrl, description) {
         <div class="text-center mt-20">
             <h2 class="text-xl font-bold">${companyName}</h2>
             <p>${address}</p>
-            <img src="${imageUrl}" alt="Image de ${companyName}" class="mx-auto my-4 max-w-[50%] mt-8">
+            <img src="${imageUrl}" alt="Image de ${companyName}" class="bg-white p-2 mx-auto my-4 max-w-[50%] mt-8">
             <p class="mt-8 max-w-[88%] mx-auto">${description}</p>
         </div>
     </div>

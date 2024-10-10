@@ -135,8 +135,8 @@ session_start();
         </a>
     </section>
     <section class="w-[100%] bg-violet-600 mx-auto p-1 max-w-xl mt-4">
-        <a href="#">
-            <h3 class="text-gray-100 font-bold text-3xl text-center m-4">Demandes en cours</h3>
+        <a href="current_requests.php">
+            <h3 class="text-gray-100 font-bold text-3xl text-center m-4">Vos demandes</h3>
         </a>
     </section>
 </div>      

@@ -78,7 +78,7 @@ foreach ($suggestions as $suggestion) {
     '<article class="mt-12 w-full mx-auto">
     <div class="suggestion_row_prez flex justify-between gap-1">
         <div class="w-1/5 flex items-center justify-center">
-            <img src="' . $suggestion['image_url'] . '" alt="logo de l\'entreprise" class="h-[50px]">
+            <img src="' . $suggestion['image_url'] . '" alt="logo de l\'entreprise" class="bg-white p-1 h-[50px]">
         </div>
         <div class="company_name_and_votes flex gap-2 justify-between">
             <div class="left font-bold text-4xl flex items-center">
