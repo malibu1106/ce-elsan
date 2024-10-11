@@ -37,8 +37,8 @@ if (isset($_SESSION['logged_in'])) {
         <section class="signup w-[96%] bg-blue-800 mx-auto p-1 max-w-xl">
             <h2 class="text-gray-100 font-bold text-3xl text-center m-4">Inscription</h2>
             <form id="signup_form" class="flex flex-col p-4" action="php_sql/signup_handler.php" method="POST">
-                <input class="mb-6 h-16 text-3xl text-center" type="text" placeholder="Nom" name="last_name" required>
                 <input class="mb-6 h-16 text-3xl text-center" type="text" placeholder="Prénom" name="first_name" required>
+                <input class="mb-6 h-16 text-3xl text-center" type="text" placeholder="Nom" name="last_name" required>
                 <input class="mb-6 h-16 text-3xl text-center" type="email" placeholder="Adresse mail" name="su_email" required>
                 <div class="relative">
                     <input class="mb-6 h-16 text-3xl text-center w-[100%]" type="password" placeholder="Mot de passe" name="su_password" id="su_password" autocomplete="off" required>

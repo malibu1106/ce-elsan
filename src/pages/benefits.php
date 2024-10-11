@@ -1,6 +1,14 @@
 <?php 
 session_start();
-// Récupération des permanences
+
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['info_message'] = "Vous devez être connecté pour accéder à cette page";
+    header("Location: ../index.php?");
+    exit();
+    
+}
+
 require_once('../php_sql/db_connect.php');
 
 // Vérification si une catégorie a été sélectionnée

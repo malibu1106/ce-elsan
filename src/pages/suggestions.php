@@ -1,6 +1,14 @@
 <?php 
 session_start();
 
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['info_message'] = "Vous devez être connecté pour accéder à cette page";
+    header("Location: ../index.php?");
+    exit();
+    
+}
+
 // Récupération des suggestions avec score total et pagination
 require_once('../php_sql/db_connect.php');
 
@@ -63,7 +71,7 @@ $suggestions = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <section class="w-[96%] bg-yellow-500 mx-auto p-1 max-w-xl text-gray-100 pb-4">
 
-        <h3 class="font-bold text-xl text-center"><a href="#">+ Faire une suggestion</a></h3>
+        <h3 class="font-bold text-xl text-center"><a href="add_suggestion.php">+ Faire une suggestion</a></h3>
 
     <div class="container">
 
@@ -82,7 +90,7 @@ foreach ($suggestions as $suggestion) {
         </div>
         <div class="company_name_and_votes flex gap-2 justify-between">
             <div class="left font-bold text-4xl flex items-center">
-                <a href="vote.php?vote=-1&suggestion_id=' . $suggestion['suggestion_id'] . '&page=' . $page . '">
+                <a href="../php_sql/vote.php?vote=-1&suggestion_id=' . $suggestion['suggestion_id'] . '&page=' . $page . '">
                     <img src="../images/icons/down.png" alt="vote négatif" class="h-8 w-8">
                 </a>
             </div>
@@ -91,7 +99,7 @@ foreach ($suggestions as $suggestion) {
                 <p class="">' . $suggestion['total_score'] . '</p>                                               
             </div>
             <div class="right font-bold text-4xl flex items-center">
-                <a href="vote.php?vote=1&suggestion_id=' . $suggestion['suggestion_id'] . '&page=' . $page . '">
+                <a href="../php_sql/vote.php?vote=1&suggestion_id=' . $suggestion['suggestion_id'] . '&page=' . $page . '">
                     <img src="../images/icons/up.png" alt="vote positif" class="h-8 w-8">
                 </a>
             </div>

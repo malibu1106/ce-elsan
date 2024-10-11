@@ -1,6 +1,14 @@
 <?php 
 session_start();
 
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['info_message'] = "Vous devez être connecté pour accéder à cette page";
+    header("Location: ../index.php?");
+    exit();
+    
+}
+
     // RECUPERATION PERMANENCES
     require_once('../php_sql/db_connect.php');
     $sql = "
@@ -56,7 +64,7 @@ session_start();
 
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8 2xl:mt-32">Bonjour <?=$_SESSION['first_name']?> !<a href="../php_sql/logout.php"> [X]</a></h1>
+<h1 class="text-blue-800 font-bold text-4xl text-center m-8 2xl:mt-32">Bonjour <?=$_SESSION['first_name']?> !</h1>
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto 2xl:flex-row 2xl:gap-24 2xl:justify-between 2xl:p-16">
 
 <section class="w-[96%] bg-green-700 mx-auto p-1 max-w-xl text-gray-100">

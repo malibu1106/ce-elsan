@@ -1,5 +1,14 @@
 <?php
 session_start();
+
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['info_message'] = "Vous devez être connecté pour accéder à cette page";
+    header("Location: ../index.php?");
+    exit();
+    
+}
+
 require_once('../php_sql/db_connect.php');
 
 // Récupérer les données de la requête
@@ -11,7 +20,7 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Récupérer la page ac
 if (!$user_id || !$suggestion_id || ($vote_value !== 1 && $vote_value !== -1)) {
     // Si les données ne sont pas valides, rediriger ou afficher une erreur
     $_SESSION['info_message'] = "Erreur lors du traitement du vote.";
-    header('Location: suggestions.php?page=' . $page);
+    header('Location: ../pages/suggestions.php?page=' . $page);
     exit;
 }
 
@@ -49,6 +58,6 @@ if ($existingVote) {
 }
 
 // Redirection vers la même page après le vote
-header('Location: suggestions.php?page=' . $page);
+header('Location: ../pages/suggestions.php?page=' . $page);
 exit;
 ?>

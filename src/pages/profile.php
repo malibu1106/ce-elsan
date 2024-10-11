@@ -1,5 +1,14 @@
 <?php 
 session_start();
+
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['info_message'] = "Vous devez être connecté pour accéder à cette page";
+    header("Location: ../index.php?");
+    exit();
+    
+}
+
 include '../php_sql/db_connect.php'; // Inclure le fichier de connexion à la base de données
 
 // Récupérer les informations de l'utilisateur connecté
@@ -18,12 +27,13 @@ SELECT
     COALESCE(SUM(v.vote_value), 0) AS total_score
 FROM suggestions s
 LEFT JOIN votes v ON s.suggestion_id = v.suggestion_id
-GROUP BY s.company_name, s.image_url, s.date
+WHERE s.user_id = :user_id
+GROUP BY s.suggestion_id, s.company_name, s.image_url, s.date
 ORDER BY s.date DESC";
-$query = $db->prepare($sql);
-$query->execute();
-$suggestions = $query->fetchAll(PDO::FETCH_ASSOC);
 
+$query = $db->prepare($sql);
+$query->execute([':user_id' => $_SESSION['user_id']]); // Utiliser l'user_id de la session
+$suggestions = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!doctype html>

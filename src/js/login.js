@@ -20,33 +20,33 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    // Mettre à jour les messages de validation du mot de passe
-    function updatePasswordFeedback() {
-        // Vérifier si les champs Nom et Prénom ne sont pas vides
-        if (lastNameInput.value.trim() !== "" && firstNameInput.value.trim() !== "") {
-            const password = passwordInput.value;
-            const validation = validatePassword(password);
-    
-            let feedbackMessage = "";
-            if (!validation.lengthValid) {
-                feedbackMessage += "Le mot de passe doit contenir au moins 8 caractères.<br>";
-            }
-            if (!validation.hasUppercase) {
-                feedbackMessage += "Le mot de passe doit contenir au moins une majuscule.<br>";
-            }
-            if (!validation.hasSpecialChar) {
-                feedbackMessage += "Le mot de passe doit contenir au moins un caractère spécial.<br>";
-            }
-            if (password !== retypedPasswordInput.value) {
-                feedbackMessage += "Les mots de passe ne correspondent pas.<br>";
-            }
-    
-            errorMessage.innerHTML = feedbackMessage;
-        } else {
-            // Si les champs Nom ou Prénom sont vides, vider le message d'erreur
-            errorMessage.innerHTML = "";
+   // Mettre à jour les messages de validation du mot de passe
+function updatePasswordFeedback() {
+    // Vérifier si les champs Nom et Prénom ne sont pas vides
+    if (lastNameInput.value.trim() !== "" && firstNameInput.value.trim() !== "") {
+        const password = passwordInput.value;
+        const validation = validatePassword(password);
+
+        let feedbackMessage = "";
+
+        // Vérification dans l'ordre de priorité
+        if (!validation.lengthValid) {
+            feedbackMessage = "Au moins 8 caractères.";
+        } else if (!validation.hasUppercase) {
+            feedbackMessage = "Au moins une majuscule.";
+        } else if (!validation.hasSpecialChar) {
+            feedbackMessage = "Au moins un caractère spécial.";
+        } else if (password !== retypedPasswordInput.value) {
+            feedbackMessage = "Les mots de passe ne correspondent pas.";
         }
+
+        // Mettre à jour le message d'erreur
+        errorMessage.innerHTML = feedbackMessage;
+    } else {
+        // Si les champs Nom ou Prénom sont vides, vider le message d'erreur
+        errorMessage.innerHTML = "";
     }
+}
 
     // Vérification en temps réel lors de la saisie
     passwordInput.addEventListener("input", updatePasswordFeedback);

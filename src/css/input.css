@@ -11,6 +11,11 @@
     outline:solid black 1px;
 }
 
+input::placeholder,
+textarea::placeholder{
+    color:#1e40af;
+    opacity: 0.75;
+}
 
 /* NAV */
 .nav_icons{

@@ -1,6 +1,14 @@
 <?php 
 session_start();
 
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['info_message'] = "Vous devez être connecté pour accéder à cette page";
+    header("Location: ../index.php?");
+    exit();
+    
+}
+
 // Récupération des nouvelles
 require_once('../php_sql/db_connect.php');
 

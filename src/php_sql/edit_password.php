@@ -3,9 +3,11 @@ session_start();
 include '../php_sql/db_connect.php'; // Inclure le fichier de connexion à la base de données
 
 // Vérifier si l'utilisateur est connecté
+// Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php'); // Rediriger vers la page d'accueil si l'utilisateur n'est pas connecté
-    exit();
+    $_SESSION['info_message'] = "Vous devez être connecté pour accéder à cette page";
+    header("Location: ../index.php?");  
+    exit();  
 }
 
 // Récupérer l'ID de l'utilisateur
