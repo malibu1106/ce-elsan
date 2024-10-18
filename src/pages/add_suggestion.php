@@ -4,8 +4,7 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
   $_SESSION['info_message'] = "Vous devez être connecté pour accéder à cette page";
   header("Location: ../index.php?");
-  exit();
-  
+  exit();  
 }
 ?>
 

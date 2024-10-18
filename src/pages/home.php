@@ -22,7 +22,7 @@ if (!isset($_SESSION['user_id'])) {
     $permanences = $query->fetchAll(PDO::FETCH_ASSOC);
 
     // RECUPERATION NEWS
-    require_once('../php_sql/db_connect.php');
+
     $sql = "
     SELECT title,date
     FROM news
@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
     $news = $query->fetchAll(PDO::FETCH_ASSOC);
     
     // Récupération des suggestions avec score total
-    require_once('../php_sql/db_connect.php');
+
     $sql = "
     SELECT s.company_name, s.date, COALESCE(SUM(v.vote_value), 0) AS total_score
     FROM suggestions s
@@ -48,7 +48,7 @@ if (!isset($_SESSION['user_id'])) {
     $query->execute();
     $suggestions = $query->fetchAll(PDO::FETCH_ASSOC);
 
-
+    require_once('../php_sql/db_disconnect.php');
 
     ?>
 <!doctype html>

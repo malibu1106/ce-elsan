@@ -26,6 +26,18 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email']) && !empty($_
     if($user){
     $hashed_password = $user['password']; // ON RECUPERE LE MOT DE PASSE HASHÉ DE CE COMPTE
 
+
+        if ($user['role'] === "to_approve"){
+            $_SESSION['info_message'] = "Votre compte n'a pas encore été validé par un administrateur";
+            header("Location: ../index.php?");
+            exit();}
+        
+
+        if ($user['role'] === "blocked"){
+            $_SESSION['info_message'] = "Vous n'avez pas l'autorisation pour accéder à cette page";
+            header("Location: ../index.php?");
+            exit();}
+
     // SI LE MOT DE PASSE EST CORRECT
         if (password_verify($password, $hashed_password)) { 
             $_SESSION["info_message"] = "Connexion réussie";
@@ -40,17 +52,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email']) && !empty($_
     // SI LE MOT DE PASSE EST INCORRECT
         else {
             $_SESSION["info_message"] = "Adresse mail ou mot de passe incorrect";
-            header('Location: ../index.php');} // REDIRECTION
+            header('Location: ../index.php');
+            exit();} // REDIRECTION
     }
     // USER EST VIDE > AUCUN COMPTE AVEC CETTE ADRESSE EMAIL
     else {
         $_SESSION["info_message"] = "Adresse mail inconnue";
-        header('Location: ../index.php');} // REDIRECTION
+        header('Location: ../index.php');
+        exit();} // REDIRECTION
 
 }
 // SI METHOD != POST OU UN CHAMP EST VIDE
 else{
     $_SESSION["info_message"] = "Erreur de traitement";
-    header('Location: ../index.php');} // REDIRECTION
+    header('Location: ../index.php');
+    exit();} // REDIRECTION
 
 ?>

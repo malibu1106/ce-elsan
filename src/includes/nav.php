@@ -20,7 +20,7 @@
         <?php if (isset($_SESSION) && isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
             echo
         '<li class="w-1/4 flex justify-center">
-            <a href="back_office/gestion.php">
+            <a href="back_office.php">
                 <img class="h-12" src="../images/icons/back_office.png" alt="bouton de l\'interface administrateur">
             </a>
         </li>';}
