@@ -50,7 +50,7 @@ if (($_SESSION['role']) !== "admin") {
             <h3 class="text-gray-100 font-bold text-3xl text-center">Gérer les utilisateurs</h3>
         </a>
         <?php
-        if ($users_to_approve){
+        if ($users_to_approve && $users_to_approve['users_count'] > 0){
             echo '<span class="absolute bg-red-600 -right-4 -top-4 h-12 w-12 flex justify-center items-center text-3xl font-bold text-white rounded-full">';
             echo $users_to_approve['users_count'];
             echo '</span>';
@@ -73,7 +73,7 @@ if (($_SESSION['role']) !== "admin") {
             <h3 class="text-gray-100 font-bold text-3xl text-center">Gérer les suggestions</h3>
         </a>
         <?php
-        if ($suggestions_to_approve){
+        if ($suggestions_to_approve && $suggestions_to_approve['suggestions_count'] > 0){
             echo '<span class="absolute bg-red-600 -right-4 -top-4 h-12 w-12 flex justify-center items-center text-3xl font-bold text-white rounded-full">';
             echo $suggestions_to_approve['suggestions_count'];
             echo '</span>';

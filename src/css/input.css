@@ -27,6 +27,16 @@ input[type=submit]{
     cursor:pointer;
 }
 
+/* BO - USERS */
+.edit_user_zone,
+.edit_user_close{
+    display:none;
+}
+.edit_user_close,
+.edit_user_zone img,
+.edit_user_btn{
+    cursor:pointer;
+}
 /* ANIMATIONS */
 @keyframes fade_out {
     0% {

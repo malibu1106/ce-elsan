@@ -67,9 +67,9 @@ $users_to_approve = $query->fetchAll(PDO::FETCH_ASSOC);
   <!-- Sélecteur de rôle -->
   <select id="roleSelect" class="border p-2 rounded w-full mb-4  text-blue-800">
     <option value="">Tous les rôles</option>
-    <option value="admin">Admin</option>
-    <option value="user">User</option>
-    <option value="blocked">Blocked</option>
+    <option value="admin">Administrateurs</option>
+    <option value="user">Utilisateurs</option>
+    <option value="blocked">Bloqués</option>
   </select>
 
   <!-- Liste des utilisateurs -->
@@ -90,27 +90,131 @@ function fetchUsers() {
     .then(users => {
       // Sélectionner l'élément où lister les utilisateurs
       const userList = document.getElementById('userList');
-      userList.innerHTML = '';
+      userList.innerHTML = ''; // Vider la liste d'utilisateurs précédente
 
       // Afficher les utilisateurs dans le DOM
       users.forEach(user => {
         const userDiv = document.createElement('div');
         userDiv.className = 'p-2 flex flex-col mt-4';
-        userDiv.innerHTML = `<p class=""><strong>${user.first_name} ${user.last_name}</strong><em>(${user.role})</em></p><p><br>${user.email}</p>`;
-        userDiv.innerHTML = `
+
+        // Construire le HTML pour chaque utilisateur
+        let userHTML = `
         <div class="container flex justify-between">
-            <p class="text-xl font-bold">${user.first_name} ${user.last_name}</p>
-            <p><em>(${user.role})</em></p>
-        </div>
+            <p class="text-xl font-bold">${user.first_name} ${user.last_name}</p>`;
+
+        // Afficher le rôle uniquement si le filtre est sur "Tous les rôles"
+        if (roleSelect === "") {
+          userHTML += `<p><em>(${user.role})</em></p>`;
+        }
+
+        userHTML += `</div>
         <div class="relative h-8 flex items-center">
-        <p class="mx-12">${user.email}</p>
-        <span class="absolute right-0"><img src="../images/icons/edit.png" alt="Éditer l'utilisateur" class="h-8 w-8"></span>
-        </div>
-        `;
+            <p class="mx-12">${user.email}</p>
+            <span class="absolute right-0 edit_user_btn"><img src="../images/icons/edit.png" alt="Éditer l'utilisateur" class="h-8 w-8"></span>
+            <span class="absolute right-0 edit_user_close text-2xl hover:text-4xl">X</span>
+        </div>`;
+
+        if (user.role === "user") {
+          userHTML += `
+            <div class="edit_user_zone flex justify-around mt-4">
+              <div class="flex flex-col items-center">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=admin">
+                <img src="../images/icons/promote_admin.png" class="h-12 w-12" alt="Promouvoir administrateur">
+              </a>
+                <p class="">Passer admin</p>
+              
+              </div>
+              <div class="flex flex-col items-center">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=blocked">
+                <img src="../images/icons/block.png" class="h-12 w-12" alt="Bloquer l'utilisateur">
+              </a>
+                <p class="">Bloquer</p>
+              </div>
+              <div class="flex flex-col items-center">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=deleted">
+                <img src="../images/icons/delete_white.png" class="h-12 w-12" alt="Supprimer l'utilisateur">
+              </a>
+                <p class="">Supprimer</p>
+              </div>
+            </div>`;
+        }
+
+        if (user.role === "admin") {
+          userHTML += `
+            <div class="edit_user_zone flex justify-around mt-4">
+              <div class="flex flex-col items-center">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=user">
+                <img src="../images/icons/down_user.png" class="h-12 w-12" alt="Passer en utilisateur">
+              </a>
+                <p class="">Passer user</p>
+              </div>
+              <div class="flex flex-col items-center">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=blocked">
+                <img src="../images/icons/block.png" class="h-12 w-12" alt="Bloquer l'utilisateur">
+              </a>
+                <p class="">Bloquer</p>
+              </div>
+              <div class="flex flex-col items-center">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=deleted">
+                <img src="../images/icons/delete_white.png" class="h-12 w-12" alt="Supprimer l'utilisateur">
+              </a>
+                <p class="">Supprimer</p>
+              </div>
+            </div>`;
+        }
+
+        if (user.role === "blocked") {
+          userHTML += `
+            <div class="edit_user_zone flex justify-around mt-4">
+              <div class="flex flex-col items-center">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=user">
+                <img src="../images/icons/checked.png" class="h-12 w-12" alt="Débloquer">
+              </a>
+                <p class="">Débloquer</p>
+              </div>
+              <div class="flex flex-col items-center">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=deleted">
+                <img src="../images/icons/delete_white.png" class="h-12 w-12" alt="Supprimer l'utilisateur">
+              </a>
+                <p class="">Supprimer</p>
+              </div>
+            </div>`;
+        }
+
+        userDiv.innerHTML = userHTML;
         userList.appendChild(userDiv);
       });
+
+      // Ajout des événements après que les utilisateurs soient ajoutés au DOM
+      addEventListeners();
     })
     .catch(error => console.error('Erreur:', error));
+}
+
+// Fonction pour ajouter les gestionnaires d'événements
+function addEventListeners() {
+  document.querySelectorAll('.edit_user_btn').forEach((editBtn, index) => {
+    const editZone = document.querySelectorAll('.edit_user_zone')[index]; // Récupère la zone d'édition correspondante
+    const closeBtn = document.querySelectorAll('.edit_user_close')[index]; // Récupère le bouton de fermeture correspondant
+
+    // Au clic sur le bouton d'édition
+    editBtn.addEventListener('click', () => {
+      editZone.style.display = 'flex'; // Affiche la zone d'édition
+      editBtn.style.display = 'none';  // Masque le bouton d'édition
+      closeBtn.style.display = 'block'; // Affiche le bouton de fermeture
+    });
+
+    // Au clic sur le bouton de fermeture
+    closeBtn.addEventListener('click', () => {
+      editZone.style.display = 'none'; // Masque la zone d'édition
+      editBtn.style.display = 'block'; // Réaffiche le bouton d'édition
+      closeBtn.style.display = 'none';  // Masque le bouton de fermeture
+    });
+
+    // Masque initialement les zones d'édition et les boutons de fermeture
+    editZone.style.display = 'none';
+    closeBtn.style.display = 'none';
+  });
 }
 
 // Ajout des événements pour la recherche en direct et la sélection du rôle
