@@ -14,7 +14,6 @@
 input::placeholder,
 textarea::placeholder{
     color:#1e40af;
-    opacity: 0.75;
 }
 
 /* NAV */
@@ -34,7 +33,28 @@ input[type=submit]{
 }
 .edit_user_close,
 .edit_user_zone img,
-.edit_user_btn{
+.edit_user_btn,
+.cancel_user_delete{
+    cursor:pointer;
+}
+.confirm_delete_user,
+.cancel_user_delete{
+    display:none;
+}
+
+/* BO - GENERAL */
+.confirm_delete_permanence,
+.cancel_delete_permanence,
+.confirm_delete_actualite,
+.cancel_delete_actualite,
+.confirm_delete_avantage,
+.cancel_delete_avantage{
+    display:none;
+}
+
+.cancel_delete_permanence,
+.cancel_delete_actualite,
+.cancel_delete_avantage{
     cursor:pointer;
 }
 /* ANIMATIONS */

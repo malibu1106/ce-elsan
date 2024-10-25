@@ -130,13 +130,21 @@ function fetchUsers() {
               </a>
                 <p class="">Bloquer</p>
               </div>
-              <div class="flex flex-col items-center">
-              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=deleted">
+              <div class="flex flex-col items-center delete_user">
+              
                 <img src="../images/icons/delete_white.png" class="h-12 w-12" alt="Supprimer l'utilisateur">
-              </a>
+              
                 <p class="">Supprimer</p>
               </div>
-            </div>`;
+              <div class="flex flex-col items-center confirm_delete_user">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=deleted">
+                <img src="../images/icons/cancel.png" class="h-12 w-12" alt="Confirmer suppresion de l'utilisateur">
+              </a>
+                <p class="text-red-400 font-bold">Confirmer</p>
+              </div>
+              
+            </div>
+            <p class="cancel_user_delete text-center mt-4 font-bold text-red-400">Annuler la suppression</p>`;
         }
 
         if (user.role === "admin") {
@@ -154,13 +162,21 @@ function fetchUsers() {
               </a>
                 <p class="">Bloquer</p>
               </div>
-              <div class="flex flex-col items-center">
-              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=deleted">
+              <div class="flex flex-col items-center delete_user">
+              
                 <img src="../images/icons/delete_white.png" class="h-12 w-12" alt="Supprimer l'utilisateur">
-              </a>
+              
                 <p class="">Supprimer</p>
               </div>
-            </div>`;
+              <div class="flex flex-col items-center confirm_delete_user">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=deleted">
+                <img src="../images/icons/cancel.png" class="h-12 w-12" alt="Confirmer suppresion de l'utilisateur">
+              </a>
+                <p class="text-red-400 font-bold">Confirmer</p>
+              </div>
+              
+            </div>
+            <p class="cancel_user_delete text-center mt-4 font-bold text-red-400">Annuler la suppression</p>`;
         }
 
         if (user.role === "blocked") {
@@ -172,13 +188,21 @@ function fetchUsers() {
               </a>
                 <p class="">Débloquer</p>
               </div>
-              <div class="flex flex-col items-center">
-              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=deleted">
+              <div class="flex flex-col items-center delete_user">
+              
                 <img src="../images/icons/delete_white.png" class="h-12 w-12" alt="Supprimer l'utilisateur">
-              </a>
+              
                 <p class="">Supprimer</p>
               </div>
-            </div>`;
+              <div class="flex flex-col items-center confirm_delete_user">
+              <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=deleted">
+                <img src="../images/icons/cancel.png" class="h-12 w-12" alt="Confirmer suppresion de l'utilisateur">
+              </a>
+                <p class="text-red-400 font-bold">Confirmer</p>
+              </div>
+              
+            </div>
+            <p class="cancel_user_delete text-center mt-4 font-bold text-red-400">Annuler la suppression</p>`;
         }
 
         userDiv.innerHTML = userHTML;
@@ -215,6 +239,27 @@ function addEventListeners() {
     editZone.style.display = 'none';
     closeBtn.style.display = 'none';
   });
+
+  // Gestion des événements pour supprimer un utilisateur
+  document.querySelectorAll('.delete_user').forEach((deleteBtn, index) => {
+    const confirmDelete = document.querySelectorAll('.confirm_delete_user')[index]; // Récupère la zone de confirmation
+    const cancelDelete = document.querySelectorAll('.cancel_user_delete')[index]; // Récupère le bouton d'annulation
+
+    // Au clic sur le bouton de suppression
+    deleteBtn.addEventListener('click', () => {
+      deleteBtn.style.display = 'none';  // Masque le bouton de suppression
+      confirmDelete.style.display = 'flex'; // Affiche la confirmation de suppression
+      cancelDelete.style.display = 'block'; // Affiche le bouton d'annulation
+    });
+
+    // Au clic sur le bouton d'annulation
+    cancelDelete.addEventListener('click', () => {
+      deleteBtn.style.display = 'flex';  // Réaffiche le bouton de suppression
+      confirmDelete.style.display = 'none'; // Masque la confirmation de suppression
+      cancelDelete.style.display = 'none'; // Masque le bouton d'annulation
+    });
+
+  });
 }
 
 // Ajout des événements pour la recherche en direct et la sélection du rôle
@@ -223,6 +268,7 @@ document.getElementById('roleSelect').addEventListener('change', fetchUsers);
 
 // Appel initial pour afficher tous les utilisateurs
 fetchUsers();
+
 </script>
 
 </section>

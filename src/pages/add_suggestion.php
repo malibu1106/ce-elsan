@@ -32,16 +32,16 @@ if (!isset($_SESSION['user_id'])) {
 <span class="absolute right-5 top-5 h-12 w-12"><a href="../pages/suggestions.php"><img src="../images/icons/delete_white.png" alt="fermer le popup"></a></span>
 
 <form id="signup_form" class="flex flex-col p-4 w-[96%] mx-auto max-w-xl text-blue-800 mt-16" action="../php_sql/create_suggestion.php" method="post" enctype="multipart/form-data">
-    <input class="mb-6 h-16 text-3xl text-center" type="text" id="company_name" name="company_name" placeholder="Nom de l'entreprise" required>
-    <textarea class="mb-6 h-48 text-3xl p-4 resize-none" id="description" name="description" placeholder="Description" required></textarea>
+    <input class="mb-6 h-16 text-3xl text-center text-blue-800" type="text" id="company_name" name="company_name" placeholder="Nom de l'entreprise" required>
+    <textarea class="mb-6 h-48 text-3xl p-4 resize-none text-blue-800" id="description" name="description" placeholder="Description" required></textarea>
     
     <!-- Champ personnalisé pour l'image -->
     <div class="mb-6 h-16 flex items-center justify-center">
-        <label class="bg-gray-100 text-blue-800 text-3xl p-4 cursor-pointer w-full text-center text-opacity-75 truncate" for="image_url">Ajouter l'image</label>
+        <label class="bg-gray-100 text-blue-800 text-3xl p-4 cursor-pointer w-full text-center truncate" for="image_url">Ajouter l'image</label>
         <input type="file" id="image_url" name="image_url" accept="image/*" class="hidden" required>
     </div>
     
-    <input class="mb-6 h-16 text-3xl text-center" type="text" id="address" name="address" placeholder="Adresse de l'entreprise" required>
+    <input class="mb-6 h-16 text-3xl text-center text-blue-800" type="text" id="address" name="address" placeholder="Adresse de l'entreprise" required>
     <input class="bg-gray-100 h-16 w-[50%] mx-auto text-3xl font-semibold text-green-700" type="submit" value="Valider">
 </form>
 
@@ -55,12 +55,7 @@ if (!isset($_SESSION['user_id'])) {
         const fileName = this.files.length > 0 ? this.files[0].name : 'Ajouter l\'image';
         label.textContent = fileName;
 
-        // Si un fichier est sélectionné, retirer l'opacité
-        if (this.files.length > 0) {
-            label.classList.remove('text-opacity-75');
-        } else {
-            label.classList.add('text-opacity-75');
-        }
+
     });
 
 </script>

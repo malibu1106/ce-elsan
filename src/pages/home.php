@@ -104,7 +104,7 @@ if (!isset($_SESSION['user_id'])) {
         echo
         '<div class="permanence_row flex justify-between p-2 gap-1">
             <p class="">'.$formattedDate.'</p>
-            <p class="truncate">'.$new['title'].'</p>          
+            <a href="news.php"><p class="truncate">'.$new['title'].'</p></a>     
         </div>';}
         ?>
            
