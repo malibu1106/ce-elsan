@@ -11,23 +11,31 @@ if ($_SESSION['role'] !== "admin") {
     $_SESSION['info_message'] = "Vous n'avez pas l'autorisation pour accéder à cette page";
     header("Location: ../pages/home.php");
     exit();
-} 
+}
+
+require_once('../php_sql/db_connect.php');
 
 $avantage_to_edit = null; // Initialiser la variable
+$categories = []; // Initialiser un tableau pour stocker les catégories
+
+// Récupérer la liste des catégories
+$sql = "SELECT * FROM categories";
+$query = $db->prepare($sql);
+$query->execute();
+$categories = $query->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les catégories
 
 if (isset($_GET['avantage_id'])) {
-    require_once('../php_sql/db_connect.php');
     // Récupération de l'avantage à éditer
     $sql = "
-    SELECT *
-    FROM benefits
+    SELECT * 
+    FROM benefits 
     WHERE benefit_id = :avantage_id
     ";
     $query = $db->prepare($sql);
     $query->bindValue(':avantage_id', $_GET['avantage_id'], PDO::PARAM_INT);
     $query->execute();
     $avantage_to_edit = $query->fetch(PDO::FETCH_ASSOC); // Récupérer une seule ligne
-    $image_url = $avantage_to_edit['image_url'] ?? ''; // Récupérez l'URL de l'image existante
+    $image_url = $avantage_to_edit['image_url'] ?? ''; // Récupérer l'URL de l'image existante
 }
 ?>
 
@@ -57,12 +65,23 @@ if (isset($_GET['avantage_id'])) {
                 <input class="mb-6 h-16 text-3xl text-center text-blue-800" type="text" placeholder="Nom de l'entreprise" name="company_name" value="<?php echo htmlspecialchars($avantage_to_edit['company_name'] ?? ''); ?>" required>
                 <input class="mb-6 h-16 text-3xl text-center text-blue-800" type="text" placeholder="Adresse" name="address" value="<?php echo htmlspecialchars($avantage_to_edit['address'] ?? ''); ?>" required>
 
-                <div class="container flex justify-between">
-                    <img class="h-16 w-16 bg-white p-1" id="imgPreview" src="<?php echo htmlspecialchars($image_url); ?>" alt="Aperçu de l'image">
+<!-- Champ de sélection de la catégorie -->
+<select name="category_id" class="mb-6 h-16 text-3xl text-blue-800" required>
+    <?php foreach ($categories as $category): ?>
+        <option value="<?php echo htmlspecialchars($category['name']); ?>"
+            <?php echo ($avantage_to_edit && $avantage_to_edit['category'] === $category['name']) ? 'selected' : ''; ?>>
+            <?php echo ucfirst(htmlspecialchars($category['name'])); ?>
+        </option>
+    <?php endforeach; ?>
+</select>
+
+
+                <div class="container flex flex-col gap-4 justify-center items-center">
+                    <img class="max-w-64 max-h-32 bg-white p-1" id="imgPreview" src="<?php echo htmlspecialchars($image_url); ?>" alt="Aperçu de l'image">
                     <div class="mb-6 h-16 flex items-center justify-center">
-                    <label class="bg-gray-100 text-blue-800 text-3xl p-4 cursor-pointer w-full text-center truncate" for="image_url" <?php echo $avantage_to_edit ? '' : 'required'; ?>>
-    <?php echo $avantage_to_edit ? 'Changer l\'image' : 'Choisir l\'image'; ?>
-</label>
+                        <label class="bg-gray-100 text-blue-800 text-3xl p-4 cursor-pointer max-w-[250px] text-center truncate" for="image_url" <?php echo $avantage_to_edit ? '' : 'required'; ?>>
+                            <?php echo $avantage_to_edit ? 'Changer l\'image' : 'Choisir l\'image'; ?>
+                        </label>
                         <input type="file" id="image_url" name="image_url" accept="image/*" class="hidden">
                     </div>
                 </div>
@@ -75,15 +94,11 @@ if (isset($_GET['avantage_id'])) {
     </main>    
 
     <script>
-    // Sélectionner les éléments du DOM
     const imageUrlInput = document.getElementById('image_url');
     const imgPreview = document.getElementById('imgPreview');
     const label = document.querySelector('label[for="image_url"]');
-
-    // Stocker l'URL de l'image d'origine
     const originalImageUrl = imgPreview.src;
 
-    // Gestion du changement de fichier
     imageUrlInput.addEventListener('change', function() {
         const file = this.files[0];
         
@@ -91,11 +106,10 @@ if (isset($_GET['avantage_id'])) {
             const reader = new FileReader();
             reader.onload = function(e) {
                 imgPreview.src = e.target.result;
-                label.textContent = file.name; // Afficher le nom du fichier
+                label.textContent = file.name;
             };
             reader.readAsDataURL(file);
         } else {
-            // Rétablir l'image d'origine si aucune image n'est sélectionnée
             imgPreview.src = originalImageUrl;
             label.textContent = 'Changer l\'image';
         }
