@@ -50,14 +50,17 @@ input[type=submit]{
 .confirm_delete_avantage,
 .cancel_delete_avantage,
 .confirm_delete_request,
-.cancel_delete_request{
+.cancel_delete_request,
+.confirm_delete_suggestion,
+.cancel_delete_suggestion{
     display:none;
 }
 
 .cancel_delete_permanence,
 .cancel_delete_actualite,
 .cancel_delete_avantage,
-.cancel_delete_request{
+.cancel_delete_request,
+.cancel_delete_suggestion{
     cursor:pointer;
 }
 /* ANIMATIONS */

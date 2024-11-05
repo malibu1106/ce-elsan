@@ -32,14 +32,17 @@ SELECT
 FROM suggestions s
 LEFT JOIN votes v ON s.suggestion_id = v.suggestion_id
 LEFT JOIN users u ON s.user_id = u.user_id
+WHERE s.is_visible = 1
 GROUP BY s.suggestion_id, u.first_name, last_name_initial
 ORDER BY s.date DESC
 LIMIT :limit OFFSET :offset";
+
 $query = $db->prepare($sql);
 $query->bindParam(':limit', $limit, PDO::PARAM_INT);
 $query->bindParam(':offset', $offset, PDO::PARAM_INT);
 $query->execute();
 $suggestions = $query->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!doctype html>
