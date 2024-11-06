@@ -20,7 +20,7 @@ if (isset($_SESSION['logged_in'])) {
 
     <h1 class="text-blue-600 font-bold text-4xl text-center m-8 2xl:m-16">Bienvenue !</h1>
     <main class="p-1 flex flex-col gap-8 lg:flex-row lg:p-4 max-w-screen-2xl mx-auto">
-        <section class="login w-[96%] bg-blue-600 mx-auto p-1 max-w-xl lg:max-h-[350px]">
+        <section class="login w-[96%] bg-blue-600 mx-auto p-1 max-w-xl lg:max-h-[350px] rounded">
             <h2 class="text-gray-100 font-bold text-3xl text-center m-4">Connexion</h2>
             <form id="signin_form" class="flex flex-col p-4" action="php_sql/signin_handler.php" method="POST">
                 <input class="mb-6 h-16 text-3xl text-center" type="mail" placeholder="Adresse mail" name="email" required>
@@ -34,7 +34,7 @@ if (isset($_SESSION['logged_in'])) {
             </form>
         </section>
 
-        <section class="signup w-[96%] bg-blue-600 mx-auto p-1 max-w-xl">
+        <section class="signup w-[96%] bg-blue-600 mx-auto p-1 max-w-xl rounded">
             <h2 class="text-gray-100 font-bold text-3xl text-center m-4">Inscription</h2>
             <form id="signup_form" class="flex flex-col p-4" action="php_sql/signup_handler.php" method="POST">
                 <input class="mb-6 h-16 text-3xl text-center" type="text" placeholder="Prénom" name="first_name" required>

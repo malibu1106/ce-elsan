@@ -84,16 +84,14 @@ $suggestions_to_approve = $query->fetchAll(PDO::FETCH_ASSOC);
 <?php include '../includes/nav.php'; ?>
 
 <div class="title_pagniation relative max-w-xl mx-auto">
-    <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Suggestions</h1>
+    <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les suggestions</h1>
 </div>
 
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
 <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
 
-    <h3 class="font-bold text-xl text-center bg-white text-blue-600 rounded p-2">
-        <a href="add_suggestion.php">+ Faire une suggestion</a>
-    </h3>
+    
 
     <?php
 if ($suggestions_to_approve) {
@@ -143,6 +141,10 @@ if ($suggestions_to_approve) {
 ?>
 
 </section><section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
+
+<h3 class="font-bold text-xl text-center bg-white text-blue-600 rounded p-2">
+        <a href="add_suggestion.php">+ Faire une suggestion</a>
+    </h3>
 
 
 
