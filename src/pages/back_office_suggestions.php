@@ -84,14 +84,14 @@ $suggestions_to_approve = $query->fetchAll(PDO::FETCH_ASSOC);
 <?php include '../includes/nav.php'; ?>
 
 <div class="title_pagniation relative max-w-xl mx-auto">
-    <h1 class="text-blue-800 font-bold text-4xl text-center m-8">Suggestions</h1>
+    <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Suggestions</h1>
 </div>
 
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-yellow-500 mx-auto p-1 max-w-xl text-gray-100 pb-4">
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
 
-    <h3 class="font-bold text-xl text-center">
+    <h3 class="font-bold text-xl text-center bg-white text-blue-600 rounded p-2">
         <a href="add_suggestion.php">+ Faire une suggestion</a>
     </h3>
 
@@ -100,14 +100,14 @@ if ($suggestions_to_approve) {
 
     
     echo '
-    <h2 class="m-4 mb-6 text-2xl text-center">Inscriptions en attente</h2>';
+    <h2 class="m-4 mb-6 text-3xl text-center font-bold">Suggestions en attente</h2>';
     
     foreach ($suggestions_to_approve as $suggestion_to_approve) {
         $date = new DateTime($suggestion_to_approve['date']);
         $formattedDate = $date->format('d/m/y');
 
-        echo '
-        <article class="mt-4 mb-4 w-full mx-auto">
+        echo '<hr>
+        <article class="mt-12 mb-4 w-full mx-auto">
             <div class="suggestion_row_prez flex justify-between gap-1">
                 <div class="w-1/5 flex items-center justify-center">
                     <img src="' . htmlspecialchars($suggestion_to_approve['image_url']) . '" alt="logo de l\'entreprise" class="bg-white p-1 h-[50px]">
@@ -127,7 +127,7 @@ if ($suggestions_to_approve) {
                 <p class="mt-2">' . htmlspecialchars($suggestion_to_approve['description']) . '</p>
                 <p class="mt-2">' . htmlspecialchars($suggestion_to_approve['address']) . '</p>
             </div>
-            <div class="flex justify-around">
+            <div class="flex justify-around mt-4">
                 <a href="../php_sql/change_suggestion_status.php?status=blocked&suggestion_id='.$suggestion_to_approve['suggestion_id'].'">
                     <img src="../images/icons/delete_white.png" alt"Refuser la suggestion" class="h-12 w-12">
                 </a>
@@ -142,6 +142,7 @@ if ($suggestions_to_approve) {
 }
 ?>
 
+</section><section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
 
 
 
@@ -150,15 +151,14 @@ if ($suggestions_to_approve) {
 
 
 
-
-    <h2 class="m-4 mt-12 text-2xl text-center">Toutes les suggestions</h2>
+    <h2 class="m-4 mt-12 text-3xl text-center font-bold">Toutes les suggestions</h2>
     <form method="GET" action="" class="flex justify-center m-4">
 
-        <select name="category" id="category" class="border p-2 rounded w-[90%]  text-blue-800" onchange="this.form.submit()">
+        <select name="category" id="category" class="border p-2 rounded w-[90%]  text-blue-600" onchange="this.form.submit()">
             <option value="">Toutes les catégories</option>
             <?php foreach ($categories as $category): ?>
                 <option value="<?= htmlspecialchars($category['name']) ?>" <?= $selectedCategory == $category['name'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($category['name']) ?>
+                    <?= ucfirst(htmlspecialchars($category['name'])) ?>
                 </option>
             <?php endforeach; ?>
         </select>

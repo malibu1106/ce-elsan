@@ -34,11 +34,11 @@ $actualites = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8">Gérer les actualités</h1>
+<h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les actualités</h1>
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-orange-500 mx-auto p-1 max-w-xl text-gray-100 pb-4">
-<h3 class="font-bold text-xl text-center mb-4"><a href="add_or_edit_actualite.php">+ Ajouter une actualité</a></h3>
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
+<h3 class="font-bold text-xl text-center mb-4 bg-white text-blue-600 rounded p-2"><a href="add_or_edit_actualite.php">+ Ajouter une actualité</a></h3>
     <div class="container">
 
     <?php

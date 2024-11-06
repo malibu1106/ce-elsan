@@ -40,15 +40,15 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8">Gérer les demandes</h1>
+<h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les demandes</h1>
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-purple-600 mx-auto p-1 max-w-xl text-gray-100 pb-4">
-<h3 class="font-bold text-xl text-center mb-4"><a href="add_or_edit_request.php">+ Ajouter une demande</a></h3>
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
+<h3 class="font-bold text-xl text-center mb-4 bg-white text-blue-600 rounded p-2"><a href="add_or_edit_request.php">+ Ajouter une demande</a></h3>
 
 <!-- Ajout du select pour trier par catégorie -->
 <div class="text-center mb-4">
-    <select id="categoryFilter" class="p-2 rounded border border-gray-300 w-full max-w-xs mx-auto text-blue-800 text-2xl">
+    <select id="categoryFilter" class="p-2 rounded border border-gray-300 w-full mx-auto text-blue-600 text-2xl text-center">
         <option value="all">Toutes les catégories</option>
         <?php
         // Récupérer et afficher toutes les catégories dans le select
@@ -94,7 +94,7 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
         <p class="cancel_delete_request text-center m-2 font-bold text-red-200" style="display:none;">Annuler la suppression</p>';
       }
     } else {
-      echo '<p class="text-center font-bold text-red-600 text-2xl mt-4">Aucune demande disponible</p>';
+      echo '<p class="text-center font-bold text-blue-600 text-2xl mt-4">Aucune demande disponible</p>';
     }
     ?>
 

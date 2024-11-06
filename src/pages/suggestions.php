@@ -60,11 +60,11 @@ $suggestions = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="title_pagniation relative max-w-xl mx-auto">
     <?php if ($page > 1): ?>
-        <a href="?page=<?= $page - 1 ?>" class="absolute left-0 top-0 mx-2 text-blue-800 py-2"><img class="h-12" src="../images/icons/previous.png" alt="page précédente"></a>
+        <a href="?page=<?= $page - 1 ?>" class="absolute left-0 top-0 mx-2 text-blue-600 py-2"><img class="h-12" src="../images/icons/previous.png" alt="page précédente"></a>
     <?php endif; ?>
-    <h1 class="text-blue-800 font-bold text-4xl text-center m-8">Suggestions</h1>
+    <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Suggestions</h1>
     <?php if ($page < $totalPages): ?>
-        <a href="?page=<?= $page + 1 ?>" class="absolute right-0 top-0 mx-2 text-blue-800 py-2"><img class="h-12" src="../images/icons/next.png" alt="page suivante"></a>
+        <a href="?page=<?= $page + 1 ?>" class="absolute right-0 top-0 mx-2 text-blue-600 py-2"><img class="h-12" src="../images/icons/next.png" alt="page suivante"></a>
     <?php endif; ?>
 </div>
 
@@ -72,9 +72,9 @@ $suggestions = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-yellow-500 mx-auto p-1 max-w-xl text-gray-100 pb-4">
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
 
-        <h3 class="font-bold text-xl text-center"><a href="add_suggestion.php">+ Faire une suggestion</a></h3>
+        <h3 class="font-bold text-xl text-center bg-white text-blue-600 rounded p-2"><a href="add_suggestion.php">+ Faire une suggestion</a></h3>
 
     <div class="container">
 

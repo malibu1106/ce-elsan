@@ -45,13 +45,13 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
 
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8">Vos avantages</h1>
+<h1 class="text-blue-600 font-bold text-4xl text-center m-8">Vos avantages</h1>
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-red-600 mx-auto max-w-xl text-gray-100 pb-8 relative" id="benefitsSection">
+<section class="w-[96%] bg-blue-600 mx-auto max-w-xl text-gray-100 pb-8 relative rounded" id="benefitsSection">
     <div class="filter p-4">
     <form method="GET" action="">
-        <select name="category" class="category-select text-blue-800 w-full h-12 font-bold text-xl text-center" onchange="this.form.submit()">
+        <select name="category" class="category-select text-blue-600 w-full h-12 font-bold text-xl text-center" onchange="this.form.submit()">
             <option value="">Toutes les catégories</option>
             <?php
             // Affichage des catégories dynamiquement
@@ -73,7 +73,7 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
         // Affichage de l'avantage
         echo
             '<div class="benefit w-1/3 flex flex-col p-2 items-center mt-8" onclick="showBenefitDetails(`' . htmlspecialchars($benefit['company_name']) . '`, `' . htmlspecialchars($benefit['address']) . '`, `' . htmlspecialchars($benefit['image_url']) . '`, `' . htmlspecialchars($benefit['description']) . '`)">
-                <img class="h-16 w-16 bg-white p-1 " src="' . htmlspecialchars($benefit['image_url']) . '" alt="logo de l\'entreprise">
+                <img class="h-16 w-16 bg-white p-1" src="' . htmlspecialchars($benefit['image_url']) . '" alt="logo de l\'entreprise">
                 ' . htmlspecialchars($benefit['company_name']) . '
             </div>';
     }}
@@ -90,7 +90,7 @@ function showBenefitDetails(companyName, address, imageUrl, description) {
     // Remplacer le contenu de la section par les détails du bénéfice
     benefitsSection.innerHTML = `
     <div class="container">
-        <span onclick="goBack()" class="absolute right-5 top-5 h-12 w-12"><img src="../images/icons/delete_white.png" alt="fermer le popup"></span>
+        <span onclick="goBack()" class="absolute right-5 top-5 h-12 w-12"><img src="../images/icons/delete_white.png" alt="fermer le popup" class=" close_icon"></span>
         <div class="text-center mt-20">
             <h2 class="text-xl font-bold">${companyName}</h2>
             <p>${address}</p>

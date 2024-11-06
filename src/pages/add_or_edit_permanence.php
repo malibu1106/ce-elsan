@@ -59,19 +59,19 @@ if ($permanence_to_edit) {
 
     <?php include '../includes/nav.php'; ?>
     
-    <h1 class="text-blue-800 font-bold text-4xl text-center m-8">Gérer les permanences</h1>
+    <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les permanences</h1>
     <main class="p-1 flex flex-col gap-8 lg:flex-row lg:p-4 max-w-screen-2xl mx-auto">
 
-        <section class="w-[96%] bg-green-700 mx-auto p-1 max-w-xl text-gray-100 pb-4">
+        <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
             <h2 class="text-gray-100 font-bold text-3xl text-center m-4">
                 <?php echo $permanence_to_edit ? 'Éditer permanence' : 'Nouvelle permanence'; ?>
             </h2>
             <form class="flex flex-col p-4" action="../php_sql/add_or_edit_permanence.php" method="POST">
             <input type="hidden" name="permanence_id" value="<?php echo $permanence_to_edit['permanence_id'] ?? ''; ?>">
-                <input class="mb-6 h-16 text-3xl text-center text-blue-800" type="date" placeholder="Date" name="date" value="<?php echo htmlspecialchars($date); ?>" required min="<?php echo date('Y-m-d'); ?>">
+                <input class="mb-6 h-16 text-3xl text-center text-blue-600" type="date" placeholder="Date" name="date" value="<?php echo htmlspecialchars($date); ?>" required min="<?php echo date('Y-m-d'); ?>">
                 
                 <div class="flex items-center justify-center mb-6 text-3xl">
-                    <select class="h-16 text-3xl text-center text-blue-800 mr-2" name="start_hour" required>
+                    <select class="h-16 text-3xl text-center text-blue-600 mr-2" name="start_hour" required>
                         <?php for ($h = 7; $h <= 18; $h++): ?>
                             <option value="<?php echo str_pad($h, 2, '0', STR_PAD_LEFT); ?>" <?php if ($start_hour == str_pad($h, 2, '0', STR_PAD_LEFT)) echo 'selected'; ?>>
                                 <?php echo str_pad($h, 2, '0', STR_PAD_LEFT); ?>
@@ -80,7 +80,7 @@ if ($permanence_to_edit) {
                     </select>
                     <span class="text-3xl">H&nbsp;</span>
 
-                    <select class="h-16 text-3xl text-center text-blue-800 mr-2" name="start_minute" required>
+                    <select class="h-16 text-3xl text-center text-blue-600 mr-2" name="start_minute" required>
                         <option value="00" <?php if ($start_minute == '00') echo 'selected'; ?>>00</option>
                         <option value="15" <?php if ($start_minute == '15') echo 'selected'; ?>>15</option>
                         <option value="30" <?php if ($start_minute == '30') echo 'selected'; ?>>30</option>
@@ -89,7 +89,7 @@ if ($permanence_to_edit) {
                 </div>
 
                 <div class="flex items-center justify-center mb-6 text-3xl">
-                    <select class="h-16 text-3xl text-center text-blue-800 mr-2" name="end_hour" required>
+                    <select class="h-16 text-3xl text-center text-blue-600 mr-2" name="end_hour" required>
                         <?php for ($h = 7; $h <= 18; $h++): ?>
                             <option value="<?php echo str_pad($h, 2, '0', STR_PAD_LEFT); ?>" <?php if ($end_hour == str_pad($h, 2, '0', STR_PAD_LEFT)) echo 'selected'; ?>>
                                 <?php echo str_pad($h, 2, '0', STR_PAD_LEFT); ?>
@@ -98,7 +98,7 @@ if ($permanence_to_edit) {
                     </select>
                     <span class="text-3xl">H&nbsp;</span>
 
-                    <select class="h-16 text-3xl text-center text-blue-800 mr-2" name="end_minute" required>
+                    <select class="h-16 text-3xl text-center text-blue-600 mr-2" name="end_minute" required>
                         <option value="00" <?php if ($end_minute == '00') echo 'selected'; ?>>00</option>
                         <option value="15" <?php if ($end_minute == '15') echo 'selected'; ?>>15</option>
                         <option value="30" <?php if ($end_minute == '30') echo 'selected'; ?>>30</option>
@@ -106,7 +106,7 @@ if ($permanence_to_edit) {
                     </select>
                 </div>
 
-                <input class="mb-6 h-16 text-3xl text-center text-blue-800" type="text" placeholder="Représentant" name="representative" value="<?php echo htmlspecialchars($permanence_to_edit['representative'] ?? ''); ?>" required>
+                <input class="mb-6 h-16 text-3xl text-center text-blue-600" type="text" placeholder="Représentant" name="representative" value="<?php echo htmlspecialchars($permanence_to_edit['representative'] ?? ''); ?>" required>
                 
                 <input class="bg-gray-100 h-16 w-[50%] mx-auto text-3xl font-semibold text-green-700" type="submit" value="Valider">
             </form>

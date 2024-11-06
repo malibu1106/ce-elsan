@@ -53,10 +53,10 @@ $months = [
 
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8">Permanences</h1>
+<h1 class="text-blue-600 font-bold text-4xl text-center m-8">Permanences</h1>
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-green-700 mx-auto p-1 max-w-xl text-gray-100">
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 rounded">
     <div class="container">
 
     <?php

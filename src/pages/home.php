@@ -9,17 +9,19 @@ if (!isset($_SESSION['user_id'])) {
     
 }
 
-    // RECUPERATION PERMANENCES
-    require_once('../php_sql/db_connect.php');
-    $sql = "
+// RECUPERATION PERMANENCES
+require_once('../php_sql/db_connect.php');
+$sql = "
     SELECT *
     FROM permanences
+    WHERE STR_TO_DATE(date, '%d/%m/%y') > CURDATE()
     ORDER BY STR_TO_DATE(date, '%d/%m/%y') ASC
     LIMIT 3;
-    ";
-    $query = $db->prepare($sql);
-    $query->execute();
-    $permanences = $query->fetchAll(PDO::FETCH_ASSOC);
+";
+$query = $db->prepare($sql);
+$query->execute();
+$permanences = $query->fetchAll(PDO::FETCH_ASSOC);
+
 
     // RECUPERATION NEWS
 
@@ -64,15 +66,15 @@ if (!isset($_SESSION['user_id'])) {
 
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8 2xl:mt-32">Bonjour <?=$_SESSION['first_name']?> !</h1>
-<main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto 2xl:flex-row 2xl:gap-24 2xl:justify-between 2xl:p-16">
+<h1 class="text-blue-600 font-bold text-4xl text-center m-8 ">Bonjour <?=$_SESSION['first_name']?> !</h1>
+<main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-green-700 mx-auto p-1 max-w-xl text-gray-100">
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 rounded">
     
 
     <div class="section_title flex justify-between p-2">
-        <h3 class="font-bold text-xl">Permanences</h3>
-        <a href="permanences.php" class="font-semibold">Tout voir</a>        
+        <h3 class="font-bold text-xl bg-white text-blue-600 rounded p-2">Permanences</h3>
+        <a href="permanences.php" class="font-semibold bg-white text-blue-600 rounded p-2">Tout voir</a>        
     </div>
     <div class="container">
 
@@ -90,10 +92,10 @@ if (!isset($_SESSION['user_id'])) {
 
 </section>
 
-<section class="w-[96%] bg-orange-500 mx-auto p-1 max-w-xl text-gray-100">
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 rounded">
     <div class="section_title flex justify-between p-2">
-        <h3 class="font-bold text-xl">Actualités</h3>
-        <a href="news.php" class="font-semibold">Tout voir</a>        
+        <h3 class="font-bold text-xl bg-white text-blue-600 rounded p-2">Actualités</h3>
+        <a href="news.php" class="font-semibold bg-white text-blue-600 rounded p-2">Tout voir</a>        
     </div>
     <div class="container">
 
@@ -112,10 +114,10 @@ if (!isset($_SESSION['user_id'])) {
 
 </section>
 
-<section class="w-[96%] bg-yellow-500 mx-auto p-1 max-w-xl text-gray-100">
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 rounded">
     <div class="section_title flex justify-between p-2">
-        <h3 class="font-bold text-xl">Suggestions</h3>
-        <a href="suggestions.php" class="font-semibold">Tout voir</a>        
+        <h3 class="font-bold text-xl bg-white text-blue-600 rounded p-2">Suggestions</h3>
+        <a href="suggestions.php" class="font-semibold bg-white text-blue-600 rounded p-2">Tout voir</a>        
     </div>
 
     <div class="container">
@@ -136,13 +138,13 @@ if (!isset($_SESSION['user_id'])) {
 
 </section>
 
-<div class="container mx-auto max-w-xl">
-    <section class="w-[100%] bg-red-600 mx-auto p-1 max-w-xl">
+<div class="h-0">
+    <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl rounded">
         <a href="benefits.php">
             <h3 class="text-gray-100 font-bold text-3xl text-center m-4">Vos avantages</h3>
         </a>
     </section>
-    <section class="w-[100%] bg-violet-600 mx-auto p-1 max-w-xl mt-4">
+    <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl mt-4 rounded">
         <a href="current_requests.php">
             <h3 class="text-gray-100 font-bold text-3xl text-center m-4">Vos demandes</h3>
         </a>

@@ -39,13 +39,13 @@ if (($_SESSION['role']) !== "admin") {
 
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8 2xl:mt-32">Page de gestion</h1>
+<h1 class="text-blue-600 font-bold text-4xl text-center m-8 2xl:mt-32">Page de gestion</h1>
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto 2xl:flex-row 2xl:gap-24 2xl:justify-between 2xl:p-12">
 
 
 
 <div class="container mx-auto max-w-xl flex flex-col gap-8">
-<section class="w-[100%] bg-blue-800 mx-auto p-1 max-w-xl h-16 flex items-center justify-center relative">
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl h-16 flex items-center justify-center relative rounded">
         <a href="back_office_users.php">
             <h3 class="text-gray-100 font-bold text-3xl text-center">Gérer les utilisateurs</h3>
         </a>
@@ -58,17 +58,17 @@ if (($_SESSION['role']) !== "admin") {
 
         ?>
     </section>
-    <section class="w-[100%] bg-green-700 mx-auto p-1 max-w-xl h-16 flex items-center justify-center">
+    <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl h-16 flex items-center justify-center rounded">
         <a href="back_office_permanences.php">
             <h3 class="text-gray-100 font-bold text-3xl text-center">Gérer les permanences</h3>
         </a>
     </section>
-    <section class="w-[100%] bg-orange-500 mx-auto p-1 max-w-xl h-16 flex items-center justify-center">
+    <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl h-16 flex items-center justify-center rounded">
         <a href="back_office_news.php">
             <h3 class="text-gray-100 font-bold text-3xl text-center">Gérer les actualités</h3>
         </a>
     </section>
-    <section class="w-[100%] bg-yellow-500 mx-auto p-1 max-w-xl h-16 flex items-center justify-center relative">
+    <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl h-16 flex items-center justify-center relative rounded">
         <a href="back_office_suggestions.php">
             <h3 class="text-gray-100 font-bold text-3xl text-center">Gérer les suggestions</h3>
         </a>
@@ -81,12 +81,12 @@ if (($_SESSION['role']) !== "admin") {
 
         ?>
     </section>
-    <section class="w-[100%] bg-red-600 mx-auto p-1 max-w-xl h-16 flex items-center justify-center">
+    <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl h-16 flex items-center justify-center rounded">
         <a href="back_office_benefits.php">
             <h3 class="text-gray-100 font-bold text-3xl text-center">Gérer les avantages</h3>
         </a>
     </section>
-    <section class="w-[100%] bg-violet-600 mx-auto p-1 max-w-xl h-16 flex items-center justify-center">
+    <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl h-16 flex items-center justify-center rounded">
         <a href="back_office_current_requests.php">
             <h3 class="text-gray-100 font-bold text-3xl text-center">Gérer les demandes</h3>
         </a>

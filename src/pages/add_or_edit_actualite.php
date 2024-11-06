@@ -43,10 +43,10 @@ if (isset($_GET['actualite_id'])) {
 
     <?php include '../includes/nav.php'; ?>
     
-    <h1 class="text-blue-800 font-bold text-4xl text-center m-8">Gérer les actualités</h1>
+    <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les actualités</h1>
     <main class="p-1 flex flex-col gap-8 lg:flex-row lg:p-4 max-w-screen-2xl mx-auto">
 
-        <section class="w-[96%] bg-orange-500 mx-auto p-1 max-w-xl text-gray-100 pb-4">
+        <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
             <h2 class="text-gray-100 font-bold text-3xl text-center m-4">
                 <?php echo $actualite_to_edit ? 'Éditer actualité' : 'Nouvelle actualité'; ?>
             </h2>
@@ -54,8 +54,8 @@ if (isset($_GET['actualite_id'])) {
             <input type="hidden" name="actualite_id" value="<?php echo $actualite_to_edit['actualite_id'] ?? ''; ?>">
                 
 
-                <input class="mb-6 h-16 text-3xl text-center text-blue-800" type="text" placeholder="Titre" name="title" value="<?php echo htmlspecialchars($actualite_to_edit['title'] ?? ''); ?>" required>
-                <textarea class="mb-6 h-48 text-3xl p-4 resize-none text-blue-800" id="text" name="text" placeholder="Contenu de l'actualité" required><?php echo htmlspecialchars($actualite_to_edit['text'] ?? ''); ?></textarea>
+                <input class="mb-6 h-16 text-3xl text-center text-blue-600" type="text" placeholder="Titre" name="title" value="<?php echo htmlspecialchars($actualite_to_edit['title'] ?? ''); ?>" required>
+                <textarea class="mb-6 h-48 text-3xl p-4 resize-none text-blue-600" id="text" name="text" placeholder="Contenu de l'actualité" required><?php echo htmlspecialchars($actualite_to_edit['text'] ?? ''); ?></textarea>
                 
                 <input class="bg-gray-100 h-16 w-[50%] mx-auto text-3xl font-semibold text-green-700" type="submit" value="Valider">
             </form>

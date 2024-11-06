@@ -33,14 +33,14 @@ $users_to_approve = $query->fetchAll(PDO::FETCH_ASSOC);
 <body class="pb-8">
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8">Gérer les utilisateurs</h1>
+<h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les utilisateurs</h1>
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-blue-800 mx-auto p-4 max-w-xl text-gray-100">
+<section class="w-[96%] bg-blue-600 mx-auto p-4 max-w-xl text-gray-100 rounded">
     <?php
     if ($users_to_approve){
         echo'
-    <h2 class="m-4 mb-6 text-2xl text-center">Inscriptions en attente</h2>';
+    <h2 class="m-4 mb-6 text-3xl text-center font-bold">Inscriptions en attente</h2>';
     foreach ($users_to_approve as $user_to_approve){
         echo '<div class="container flex justify-between items-center max-w-[420px] mx-auto">';
         echo '<a href="../php_sql/change_user_status.php?role=blocked&user_id='.$user_to_approve['user_id'].'">';
@@ -53,19 +53,19 @@ $users_to_approve = $query->fetchAll(PDO::FETCH_ASSOC);
         echo '</div>';
     }
 
-    echo '<hr class="mt-4">';
+
 }
     ?>
-
+</section><section class="w-[96%] bg-blue-600 mx-auto p-4 max-w-xl text-gray-100 rounded">
     
-    <h2 class="m-4 mb-8 text-2xl text-center">Tous les utilisateurs</h2>
+    <h2 class="m-4 mb-8 text-3xl text-center font-bold">Tous les utilisateurs</h2>
 
     <div class="p-4">
   <!-- Barre de recherche -->
-  <input type="text" id="searchInput" class="border p-2 rounded w-full mb-4 text-blue-800" placeholder="Rechercher par nom, prénom ou email...">
+  <input type="text" id="searchInput" class="border p-2 rounded w-full mb-4 text-blue-600" placeholder="Rechercher par nom, prénom ou email...">
 
   <!-- Sélecteur de rôle -->
-  <select id="roleSelect" class="border p-2 rounded w-full mb-4  text-blue-800">
+  <select id="roleSelect" class="border p-2 rounded w-full mb-4  text-blue-600">
     <option value="">Tous les rôles</option>
     <option value="admin">Administrateurs</option>
     <option value="user">Utilisateurs</option>

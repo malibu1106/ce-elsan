@@ -54,7 +54,7 @@ $news = $query->fetchAll(PDO::FETCH_ASSOC);
     <?php if ($page > 1): ?>
         <a href="?page=<?= $page - 1 ?>" class="absolute left-0 top-0 mx-2 text-blue-800 py-2"><img class="h-12" src="../images/icons/previous.png" alt="page précédente"></a>
     <?php endif; ?>
-    <h1 class="text-blue-800 font-bold text-4xl text-center m-8">Actualités</h1>
+    <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Actualités</h1>
     <?php if ($page < $totalPages): ?>
         <a href="?page=<?= $page + 1 ?>" class="absolute right-0 top-0 mx-2 text-blue-800 py-2"><img class="h-12" src="../images/icons/next.png" alt="page suivante"></a>
     <?php endif; ?>
@@ -64,7 +64,7 @@ $news = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-orange-500 mx-auto p-1 max-w-xl text-gray-100">
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 rounded">
     <div class="container">
 
     <?php

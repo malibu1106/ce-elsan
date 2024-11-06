@@ -42,15 +42,15 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les cat�
 
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8">Gérer les avantages</h1>
+<h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les avantages</h1>
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-red-600 mx-auto p-1 max-w-xl text-gray-100 pb-4">
-    <h3 class="font-bold text-xl text-center mb-4"><a href="add_or_edit_avantage.php">+ Ajouter un avantage</a></h3>
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
+    <h3 class="font-bold text-xl text-center mb-4 bg-white text-blue-600 rounded p-2"><a href="add_or_edit_avantage.php">+ Ajouter un avantage</a></h3>
 
     <!-- Ajout du select pour trier par catégorie -->
     <div class="text-center mb-4">
-        <select id="categoryFilter" class="p-2 rounded border border-gray-300 w-full max-w-xs mx-auto text-blue-800 text-2xl">
+        <select id="categoryFilter" class="p-2 rounded border border-gray-300 w-full mx-auto text-blue-600 text-2xl text-center">
             <option value="all">Toutes les catégories</option>
             <?php
             // Récupérer et afficher toutes les catégories dans le select

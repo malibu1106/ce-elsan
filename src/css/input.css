@@ -13,8 +13,13 @@
 
 input::placeholder,
 textarea::placeholder{
-    color:#1e40af;
+    color:#2563EB;
 }
+.benefit,
+.close_icon{
+    cursor:pointer;
+}
+
 
 /* NAV */
 .nav_icons{

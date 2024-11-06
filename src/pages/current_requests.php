@@ -21,7 +21,7 @@ if ($categoryFilter) {
     $sql .= " WHERE category = :category";
 }
 if ($statusFilter) {
-    $sql .= ($categoryFilter ? " AND" : " WHERE") . " status = :status"; // Assurez-vous que le champ 'status' existe dans votre table
+    $sql .= ($categoryFilter ? " AND" : " WHERE") . " status = :status";
 }
 
 $query = $db->prepare($sql);
@@ -52,13 +52,13 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
 
 <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-800 font-bold text-4xl text-center m-8">Vos demandes</h1>
+<h1 class="text-blue-600 font-bold text-4xl text-center m-8">Vos demandes</h1>
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-violet-600 mx-auto max-w-xl text-gray-100 pb-8 relative" id="requestsSection">
+<section class="w-[96%] bg-blue-600 mx-auto max-w-xl text-gray-100 pb-8 relative rounded" id="requestsSection">
     <div class="filter p-4">
     <form method="GET" action="">
-        <select name="category" class="category-select text-blue-800 w-full h-12 font-bold text-xl text-center" onchange="this.form.submit()">
+        <select name="category" class="category-select text-blue-600 w-full h-12 font-bold text-xl text-center" onchange="this.form.submit()">
             <option value="">Toutes les catégories</option>
             <?php
             // Affichage des catégories dynamiquement
@@ -67,7 +67,7 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
             }
             ?>
         </select>
-        <select name="status" class="status-select text-blue-800 w-full h-12 font-bold text-xl text-center mt-4" onchange="this.form.submit()">
+        <select name="status" class="status-select text-blue-600 w-full h-12 font-bold text-xl text-center mt-4" onchange="this.form.submit()">
             <option value="">Tous les statuts</option>
             <option value="en cours" <?php echo ($statusFilter == 'en cours') ? 'selected' : ''; ?>>En cours</option>
             <option value="favorable" <?php echo ($statusFilter == 'favorable') ? 'selected' : ''; ?>>Favorable</option>
