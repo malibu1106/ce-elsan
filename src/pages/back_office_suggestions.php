@@ -89,7 +89,7 @@ $suggestions_to_approve = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
+
 
     
 
@@ -98,6 +98,7 @@ if ($suggestions_to_approve) {
 
     
     echo '
+    <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
     <h2 class="m-4 mb-6 text-3xl text-center font-bold">Suggestions en attente</h2>';
     
     foreach ($suggestions_to_approve as $suggestion_to_approve) {
@@ -133,14 +134,15 @@ if ($suggestions_to_approve) {
                     <img src="../images/icons/checked.png" alt"Accepter la suggestion" class="h-12 w-12">
                 </a>
             </div>
-        </article>';
+        </article>
+        </section>';
     }
 
     
 }
 ?>
 
-</section><section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
+<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
 
 <h3 class="font-bold text-xl text-center bg-white text-blue-600 rounded p-2">
         <a href="add_suggestion.php">+ Faire une suggestion</a>
