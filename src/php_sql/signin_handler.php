@@ -47,7 +47,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email']) && !empty($_
             $_SESSION['last_name'] = $user['last_name'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['email'] = $user['email'];
-            header('Location: ../pages/home.php');} // REDIRECTION
+            if($_SESSION['role'] === "admin"){
+                header('Location: ../pages/back_office.php');
+            }
+            else{
+                header('Location: ../pages/home.php');}
+            }
+            
 
     // SI LE MOT DE PASSE EST INCORRECT
         else {
