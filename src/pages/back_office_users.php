@@ -24,20 +24,22 @@ $users_to_approve = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <!doctype html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../output.css" rel="stylesheet">
-  <title>Elsan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../output.css" rel="stylesheet">
+    <title>Elsan</title>
 </head>
+
 <body class="pb-8">
-<?php include '../includes/nav.php';?>
+    <?php include '../includes/nav.php';?>
 
-<h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les utilisateurs</h1>
-<main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
+    <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les utilisateurs</h1>
+    <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
-<section class="w-[96%] bg-blue-600 mx-auto p-4 max-w-xl text-gray-100 rounded">
-    <?php
+        <section class="w-[96%] bg-blue-800 mx-auto p-4 max-w-xl text-gray-100 rounded">
+            <?php
     if ($users_to_approve){
         echo'
     <h2 class="m-4 mb-6 text-3xl text-center font-bold">Inscriptions en attente</h2>';
@@ -56,66 +58,68 @@ $users_to_approve = $query->fetchAll(PDO::FETCH_ASSOC);
 
 }
     ?>
-</section><section class="w-[96%] bg-blue-600 mx-auto p-4 max-w-xl text-gray-100 rounded">
-    
-    <h2 class="m-4 mb-8 text-3xl text-center font-bold">Tous les utilisateurs</h2>
+        </section>
+        <section class="w-[96%] bg-blue-600 mx-auto p-4 max-w-xl text-gray-100 rounded">
 
-    <div class="p-4">
-  <!-- Barre de recherche -->
-  <input type="text" id="searchInput" class="border p-2 rounded w-full mb-4 text-blue-600" placeholder="Rechercher par nom, prénom ou email...">
+            <h2 class="m-4 mb-8 text-3xl text-center font-bold">Tous les utilisateurs</h2>
 
-  <!-- Sélecteur de rôle -->
-  <select id="roleSelect" class="border p-2 rounded w-full mb-4  text-blue-600">
-    <option value="">Tous les rôles</option>
-    <option value="admin">Administrateurs</option>
-    <option value="user">Utilisateurs</option>
-    <option value="blocked">Bloqués</option>
-  </select>
+            <div class="p-4">
+                <!-- Barre de recherche -->
+                <input type="text" id="searchInput" class="border p-2 rounded w-full mb-4 text-blue-600"
+                    placeholder="Rechercher par nom, prénom ou email...">
 
-  <!-- Liste des utilisateurs -->
-  <div id="userList" class="space-y-2">
-    <!-- Les utilisateurs seront listés ici -->
-  </div>
-</div>
+                <!-- Sélecteur de rôle -->
+                <select id="roleSelect" class="border p-2 rounded w-full mb-4  text-blue-600">
+                    <option value="">Tous les rôles</option>
+                    <option value="admin">Administrateurs</option>
+                    <option value="user">Utilisateurs</option>
+                    <option value="blocked">Bloqués</option>
+                </select>
 
-<script>
-// Fonction pour récupérer et afficher les utilisateurs
-function fetchUsers() {
-  const searchInput = document.getElementById('searchInput').value;
-  const roleSelect = document.getElementById('roleSelect').value;
+                <!-- Liste des utilisateurs -->
+                <div id="userList" class="space-y-2">
+                    <!-- Les utilisateurs seront listés ici -->
+                </div>
+            </div>
 
-  // Appel AJAX pour récupérer les utilisateurs
-  fetch(`back_office_get_users.php?search=${searchInput}&role=${roleSelect}`)
-    .then(response => response.json())
-    .then(users => {
-      // Sélectionner l'élément où lister les utilisateurs
-      const userList = document.getElementById('userList');
-      userList.innerHTML = ''; // Vider la liste d'utilisateurs précédente
+            <script>
+            // Fonction pour récupérer et afficher les utilisateurs
+            function fetchUsers() {
+                const searchInput = document.getElementById('searchInput').value;
+                const roleSelect = document.getElementById('roleSelect').value;
 
-      // Afficher les utilisateurs dans le DOM
-      users.forEach(user => {
-        const userDiv = document.createElement('div');
-        userDiv.className = 'p-2 flex flex-col mt-4';
+                // Appel AJAX pour récupérer les utilisateurs
+                fetch(`back_office_get_users.php?search=${searchInput}&role=${roleSelect}`)
+                    .then(response => response.json())
+                    .then(users => {
+                        // Sélectionner l'élément où lister les utilisateurs
+                        const userList = document.getElementById('userList');
+                        userList.innerHTML = ''; // Vider la liste d'utilisateurs précédente
 
-        // Construire le HTML pour chaque utilisateur
-        let userHTML = `
+                        // Afficher les utilisateurs dans le DOM
+                        users.forEach(user => {
+                            const userDiv = document.createElement('div');
+                            userDiv.className = 'p-2 flex flex-col mt-4';
+
+                            // Construire le HTML pour chaque utilisateur
+                            let userHTML = `
         <div class="container flex justify-between">
             <p class="text-xl font-bold">${user.first_name} ${user.last_name}</p>`;
 
-        // Afficher le rôle uniquement si le filtre est sur "Tous les rôles"
-        if (roleSelect === "") {
-          userHTML += `<p><em>(${user.role})</em></p>`;
-        }
+                            // Afficher le rôle uniquement si le filtre est sur "Tous les rôles"
+                            if (roleSelect === "") {
+                                userHTML += `<p><em>(${user.role})</em></p>`;
+                            }
 
-        userHTML += `</div>
+                            userHTML += `</div>
         <div class="relative h-8 flex items-center">
             <p class="mx-12">${user.email}</p>
             <span class="absolute right-0 edit_user_btn"><img src="../images/icons/edit.png" alt="Éditer l'utilisateur" class="h-8 w-8"></span>
             <span class="absolute right-0 edit_user_close text-2xl hover:text-4xl">X</span>
         </div>`;
 
-        if (user.role === "user") {
-          userHTML += `
+                            if (user.role === "user") {
+                                userHTML += `
             <div class="edit_user_zone flex justify-around mt-4">
               <div class="flex flex-col items-center">
               <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=admin">
@@ -145,10 +149,10 @@ function fetchUsers() {
               
             </div>
             <p class="cancel_user_delete text-center mt-4 font-bold text-red-400">Annuler la suppression</p>`;
-        }
+                            }
 
-        if (user.role === "admin") {
-          userHTML += `
+                            if (user.role === "admin") {
+                                userHTML += `
             <div class="edit_user_zone flex justify-around mt-4">
               <div class="flex flex-col items-center">
               <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=user">
@@ -177,10 +181,10 @@ function fetchUsers() {
               
             </div>
             <p class="cancel_user_delete text-center mt-4 font-bold text-red-400">Annuler la suppression</p>`;
-        }
+                            }
 
-        if (user.role === "blocked") {
-          userHTML += `
+                            if (user.role === "blocked") {
+                                userHTML += `
             <div class="edit_user_zone flex justify-around mt-4">
               <div class="flex flex-col items-center">
               <a href="../php_sql/change_user_status.php?user_id=${user.user_id}&role=user">
@@ -203,76 +207,80 @@ function fetchUsers() {
               
             </div>
             <p class="cancel_user_delete text-center mt-4 font-bold text-red-400">Annuler la suppression</p>`;
-        }
+                            }
 
-        userDiv.innerHTML = userHTML;
-        userList.appendChild(userDiv);
-      });
+                            userDiv.innerHTML = userHTML;
+                            userList.appendChild(userDiv);
+                        });
 
-      // Ajout des événements après que les utilisateurs soient ajoutés au DOM
-      addEventListeners();
-    })
-    .catch(error => console.error('Erreur:', error));
-}
+                        // Ajout des événements après que les utilisateurs soient ajoutés au DOM
+                        addEventListeners();
+                    })
+                    .catch(error => console.error('Erreur:', error));
+            }
 
-// Fonction pour ajouter les gestionnaires d'événements
-function addEventListeners() {
-  document.querySelectorAll('.edit_user_btn').forEach((editBtn, index) => {
-    const editZone = document.querySelectorAll('.edit_user_zone')[index]; // Récupère la zone d'édition correspondante
-    const closeBtn = document.querySelectorAll('.edit_user_close')[index]; // Récupère le bouton de fermeture correspondant
+            // Fonction pour ajouter les gestionnaires d'événements
+            function addEventListeners() {
+                document.querySelectorAll('.edit_user_btn').forEach((editBtn, index) => {
+                    const editZone = document.querySelectorAll('.edit_user_zone')[
+                        index]; // Récupère la zone d'édition correspondante
+                    const closeBtn = document.querySelectorAll('.edit_user_close')[
+                        index]; // Récupère le bouton de fermeture correspondant
 
-    // Au clic sur le bouton d'édition
-    editBtn.addEventListener('click', () => {
-      editZone.style.display = 'flex'; // Affiche la zone d'édition
-      editBtn.style.display = 'none';  // Masque le bouton d'édition
-      closeBtn.style.display = 'block'; // Affiche le bouton de fermeture
-    });
+                    // Au clic sur le bouton d'édition
+                    editBtn.addEventListener('click', () => {
+                        editZone.style.display = 'flex'; // Affiche la zone d'édition
+                        editBtn.style.display = 'none'; // Masque le bouton d'édition
+                        closeBtn.style.display = 'block'; // Affiche le bouton de fermeture
+                    });
 
-    // Au clic sur le bouton de fermeture
-    closeBtn.addEventListener('click', () => {
-      editZone.style.display = 'none'; // Masque la zone d'édition
-      editBtn.style.display = 'block'; // Réaffiche le bouton d'édition
-      closeBtn.style.display = 'none';  // Masque le bouton de fermeture
-    });
+                    // Au clic sur le bouton de fermeture
+                    closeBtn.addEventListener('click', () => {
+                        editZone.style.display = 'none'; // Masque la zone d'édition
+                        editBtn.style.display = 'block'; // Réaffiche le bouton d'édition
+                        closeBtn.style.display = 'none'; // Masque le bouton de fermeture
+                    });
 
-    // Masque initialement les zones d'édition et les boutons de fermeture
-    editZone.style.display = 'none';
-    closeBtn.style.display = 'none';
-  });
+                    // Masque initialement les zones d'édition et les boutons de fermeture
+                    editZone.style.display = 'none';
+                    closeBtn.style.display = 'none';
+                });
 
-  // Gestion des événements pour supprimer un utilisateur
-  document.querySelectorAll('.delete_user').forEach((deleteBtn, index) => {
-    const confirmDelete = document.querySelectorAll('.confirm_delete_user')[index]; // Récupère la zone de confirmation
-    const cancelDelete = document.querySelectorAll('.cancel_user_delete')[index]; // Récupère le bouton d'annulation
+                // Gestion des événements pour supprimer un utilisateur
+                document.querySelectorAll('.delete_user').forEach((deleteBtn, index) => {
+                    const confirmDelete = document.querySelectorAll('.confirm_delete_user')[
+                        index]; // Récupère la zone de confirmation
+                    const cancelDelete = document.querySelectorAll('.cancel_user_delete')[
+                        index]; // Récupère le bouton d'annulation
 
-    // Au clic sur le bouton de suppression
-    deleteBtn.addEventListener('click', () => {
-      deleteBtn.style.display = 'none';  // Masque le bouton de suppression
-      confirmDelete.style.display = 'flex'; // Affiche la confirmation de suppression
-      cancelDelete.style.display = 'block'; // Affiche le bouton d'annulation
-    });
+                    // Au clic sur le bouton de suppression
+                    deleteBtn.addEventListener('click', () => {
+                        deleteBtn.style.display = 'none'; // Masque le bouton de suppression
+                        confirmDelete.style.display = 'flex'; // Affiche la confirmation de suppression
+                        cancelDelete.style.display = 'block'; // Affiche le bouton d'annulation
+                    });
 
-    // Au clic sur le bouton d'annulation
-    cancelDelete.addEventListener('click', () => {
-      deleteBtn.style.display = 'flex';  // Réaffiche le bouton de suppression
-      confirmDelete.style.display = 'none'; // Masque la confirmation de suppression
-      cancelDelete.style.display = 'none'; // Masque le bouton d'annulation
-    });
+                    // Au clic sur le bouton d'annulation
+                    cancelDelete.addEventListener('click', () => {
+                        deleteBtn.style.display = 'flex'; // Réaffiche le bouton de suppression
+                        confirmDelete.style.display = 'none'; // Masque la confirmation de suppression
+                        cancelDelete.style.display = 'none'; // Masque le bouton d'annulation
+                    });
 
-  });
-}
+                });
+            }
 
-// Ajout des événements pour la recherche en direct et la sélection du rôle
-document.getElementById('searchInput').addEventListener('input', fetchUsers);
-document.getElementById('roleSelect').addEventListener('change', fetchUsers);
+            // Ajout des événements pour la recherche en direct et la sélection du rôle
+            document.getElementById('searchInput').addEventListener('input', fetchUsers);
+            document.getElementById('roleSelect').addEventListener('change', fetchUsers);
 
-// Appel initial pour afficher tous les utilisateurs
-fetchUsers();
+            // Appel initial pour afficher tous les utilisateurs
+            fetchUsers();
+            </script>
 
-</script>
+        </section>
 
-</section>
-    
-</main> 
+    </main>
 </body>
+
 </html>

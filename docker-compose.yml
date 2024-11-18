@@ -3,7 +3,7 @@ services:
         image: php:8.3-apache
         container_name: s_elsan_php8_3
         ports:
-            - "8001:80" # on définit le port pour accéder à l'application sur la première valeur (localhost:8000 si on a 8000:80)
+            - "8002:80" # on définit le port pour accéder à l'application sur la première valeur (localhost:8000 si on a 8000:80)
         volumes:
             - ./src:/var/www/html # on monte le dossier courant dans le dossier /var/www/html du container
         build:
@@ -22,7 +22,7 @@ services:
         volumes:
             - "./data:/docker-entrypoint-initdb.d" # création de la table et insertion des données à partir du fichier .sql situé dans le dossier data
         ports:
-            - "3366:3306"
+            - "3367:3306"
 
     phpma:
         image: phpmyadmin/phpmyadmin
@@ -34,4 +34,4 @@ services:
             PMA_PASSWORD: root
             UPLOAD_LIMIT: 20M
         ports:
-            - "8081:80" # on définit le port pour accéder à phpmyadmin (localhost:8081)
+            - "8084:80" # on définit le port pour accéder à phpmyadmin (localhost:8081)

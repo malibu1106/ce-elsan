@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : dim. 17 nov. 2024 à 17:11
--- Version du serveur : 8.0.39
+-- Généré le : lun. 18 nov. 2024 à 10:01
+-- Version du serveur : 8.0.37
 -- Version de PHP : 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -179,12 +179,13 @@ CREATE TABLE `suggestions` (
 --
 
 INSERT INTO `suggestions` (`suggestion_id`, `company_name`, `description`, `image_url`, `date`, `address`, `user_id`, `is_visible`, `category`) VALUES
-(4, 'Leclerc', 'Oui bon voilà alors ce serait cool d’avoir des réductions chez Leclerc', '../images/uploads/leclerc.png', '2024-10-21 22:12:48', '4 avenue du trésor, 58110 Biches', 3, 1, 'alimentation'),
-(5, 'La chocolaterie', 'Oui bon voilà alors ce serait cool d’avoir des réductions à la chocolaterie de ma grande tante Tessy', '../images/uploads/chocolaterie.png', '2024-10-25 22:12:48', '4 avenue du général Louis, 58000 Nevers', 3, 1, 'alimentation'),
+(4, 'Leclerc', 'Oui bon voilà alors ce serait cool d’avoir des réductions chez Leclerc', '../images/uploads/leclerc.png', '2024-10-21 22:12:48', '4 avenue du trésor, 58110 Biches', 1, 1, 'alimentation'),
+(5, 'La chocolaterie', 'Oui bon voilà alors ce serait cool d’avoir des réductions à la chocolaterie de ma grande tante Tessy', '../images/uploads/chocolaterie.png', '2024-10-25 22:12:48', '4 avenue du général Louis, 58000 Nevers', 2, 1, 'alimentation'),
 (6, 'Saveurs d’orient', 'J’adore les kebabs ! La viande et le pain sont faits maison, alors ça vaut le coup !', '../images/uploads/kebab.png', '2024-10-30 22:12:48', 'Pas loin de la cathédrale de Nevers', 3, 1, 'alimentation'),
-(11, 'Les bougies de Charroux', 'Apparemment on peut facilement avoir 10% de réduction chez eux, ce serait cool d\'aller leur demander, leurs bougies sentent trop bon !', '../images/uploads/bougie.png', '2024-11-06 22:12:48', 'Rue jean louis gourion à Nevers', 3, 1, 'bien-etre'),
-(12, 'Le parc du Pal', 'J\'aimerais vraiment qu\'on ait des prix pour le PAL ! C\'est l\'éclat là bas !', '../images/uploads/pal.png', '2024-11-16 22:12:48', 'Saint-Pourçain-sur-Besbre', 3, 1, 'loisirs'),
-(13, 'Le parc du Pal', 'J\'aimerais vraiment qu\'on ait des prix pour le PAL ! C\'est l\'éclat là bas !', '../images/uploads/pal.png', '2024-08-16 22:12:48', 'Saint-Pourçain-sur-Besbre', 3, 1, 'loisirs');
+(11, 'Les bougies de Charroux', 'Apparemment on peut facilement avoir 10% de réduction chez eux, ce serait cool d\'aller leur demander, leurs bougies sentent trop bon !', '../images/uploads/bougie.png', '2024-11-06 22:12:48', 'Rue jean louis gourion à Nevers', 1, 1, 'bien-etre'),
+(12, 'Le parc du Pal', 'J\'aimerais vraiment qu\'on ait des prix pour le PAL ! C\'est l\'éclat là bas !', '../images/uploads/pal.png', '2024-11-16 22:12:48', 'Saint-Pourçain-sur-Besbre', 5, 1, 'loisirs'),
+(13, 'Le parc du Pal', 'J\'aimerais vraiment qu\'on ait des prix pour le PAL ! C\'est l\'éclat là bas !', '../images/uploads/pal.png', '2024-08-16 22:12:48', 'Saint-Pourçain-sur-Besbre', 6, 1, 'loisirs'),
+(14, 'Le parc du Pal', 'J\'aimerais vraiment qu\'on ait des prix pour le PAL ! C\'est l\'éclat là bas !', '../images/uploads/pal.png', '2024-08-16 22:12:48', 'Saint-Pourçain-sur-Besbre', 6, 0, 'loisirs');
 
 -- --------------------------------------------------------
 
@@ -329,7 +330,7 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT pour la table `suggestions`
 --
 ALTER TABLE `suggestions`
-  MODIFY `suggestion_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `suggestion_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `users`

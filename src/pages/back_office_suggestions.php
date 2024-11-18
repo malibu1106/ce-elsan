@@ -72,33 +72,35 @@ $suggestions_to_approve = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <!doctype html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../output.css" rel="stylesheet">
-  <script src="js/script.js"></script>
-  <title>Elsan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../output.css" rel="stylesheet">
+    <script src="js/script.js"></script>
+    <title>Elsan</title>
 </head>
+
 <body class="pb-8">
 
-<?php include '../includes/nav.php'; ?>
+    <?php include '../includes/nav.php'; ?>
 
-<div class="title_pagniation relative max-w-xl mx-auto">
-    <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les suggestions</h1>
-</div>
+    <div class="title_pagniation relative max-w-xl mx-auto">
+        <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les suggestions</h1>
+    </div>
 
-<main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
+    <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
 
 
 
-    
 
-    <?php
+
+        <?php
 if ($suggestions_to_approve) {
 
     
     echo '
-    <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
+    <section class="w-[96%] bg-blue-800 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
     <h2 class="m-4 mb-6 text-3xl text-center font-bold">Suggestions en attente</h2>';
     
     foreach ($suggestions_to_approve as $suggestion_to_approve) {
@@ -142,35 +144,37 @@ if ($suggestions_to_approve) {
 }
 ?>
 
-<section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
+        <section class="w-[96%] bg-blue-600 mx-auto p-1 max-w-xl text-gray-100 pb-4 rounded">
 
-<h3 class="font-bold text-xl text-center bg-white text-blue-600 rounded p-2">
-        <a href="add_suggestion.php">+ Faire une suggestion</a>
-    </h3>
-
-
+            <h3 class="font-bold text-xl text-center bg-white text-blue-600 rounded p-2">
+                <a href="add_suggestion.php">+ Faire une suggestion</a>
+            </h3>
 
 
 
 
 
 
-    <h2 class="m-4 mt-12 text-3xl text-center font-bold">Toutes les suggestions</h2>
-    <form method="GET" action="" class="flex justify-center m-4">
 
-        <select name="category" id="category" class="border p-2 rounded w-[90%]  text-blue-600" onchange="this.form.submit()">
-            <option value="">Toutes les catégories</option>
-            <?php foreach ($categories as $category): ?>
-                <option value="<?= htmlspecialchars($category['name']) ?>" <?= $selectedCategory == $category['name'] ? 'selected' : '' ?>>
-                    <?= ucfirst(htmlspecialchars($category['name'])) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </form>
 
-    <div class="container">
+            <h2 class="m-4 mt-12 text-3xl text-center font-bold">Toutes les suggestions</h2>
+            <form method="GET" action="" class="flex justify-center m-4">
 
-    <?php
+                <select name="category" id="category" class="border p-2 rounded w-[90%]  text-blue-600"
+                    onchange="this.form.submit()">
+                    <option value="">Toutes les catégories</option>
+                    <?php foreach ($categories as $category): ?>
+                    <option value="<?= htmlspecialchars($category['name']) ?>"
+                        <?= $selectedCategory == $category['name'] ? 'selected' : '' ?>>
+                        <?= ucfirst(htmlspecialchars($category['name'])) ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+            </form>
+
+            <div class="container">
+
+                <?php
     $lastSuggestion = end($suggestions); // Récupérer le dernier élément du tableau
 
     if ($suggestions) {
@@ -222,40 +226,42 @@ if ($suggestions_to_approve) {
         echo '<p class="text-center mt-4">Aucune suggestion trouvée pour cette catégorie.</p>';
     }
     ?>
-        </div>
+            </div>
 
-    </div>
-</section>
+            </div>
+        </section>
 
-</main> 
-
-
-<script>
-  // Fonction pour ajouter les gestionnaires d'événements
-function addEventListeners() {
-  document.querySelectorAll('.delete_suggestion').forEach((deleteBtn, index) => {
-    const confirmDelete = document.querySelectorAll('.confirm_delete_suggestion')[index]; // Récupère la zone de confirmation
-    const cancelDelete = document.querySelectorAll('.cancel_delete_suggestion')[index]; // Récupère le bouton d'annulation
-
-    deleteBtn.addEventListener('click', () => {
-      deleteBtn.style.display = 'none';  // Masque le bouton de suppression
-      confirmDelete.style.display = 'block'; // Affiche la confirmation de suppression
-      cancelDelete.style.display = 'block'; // Affiche le bouton d'annulation
-    });
-
-    cancelDelete.addEventListener('click', () => {
-      deleteBtn.style.display = 'block';  // Réaffiche le bouton de suppression
-      confirmDelete.style.display = 'none'; // Masque la confirmation de suppression
-      cancelDelete.style.display = 'none'; // Masque le bouton d'annulation
-    });
-  });
-}
+    </main>
 
 
-// Appel des gestionnaires d'événements
-addEventListeners();
+    <script>
+    // Fonction pour ajouter les gestionnaires d'événements
+    function addEventListeners() {
+        document.querySelectorAll('.delete_suggestion').forEach((deleteBtn, index) => {
+            const confirmDelete = document.querySelectorAll('.confirm_delete_suggestion')[
+            index]; // Récupère la zone de confirmation
+            const cancelDelete = document.querySelectorAll('.cancel_delete_suggestion')[
+            index]; // Récupère le bouton d'annulation
 
-</script>
-   
+            deleteBtn.addEventListener('click', () => {
+                deleteBtn.style.display = 'none'; // Masque le bouton de suppression
+                confirmDelete.style.display = 'block'; // Affiche la confirmation de suppression
+                cancelDelete.style.display = 'block'; // Affiche le bouton d'annulation
+            });
+
+            cancelDelete.addEventListener('click', () => {
+                deleteBtn.style.display = 'block'; // Réaffiche le bouton de suppression
+                confirmDelete.style.display = 'none'; // Masque la confirmation de suppression
+                cancelDelete.style.display = 'none'; // Masque le bouton d'annulation
+            });
+        });
+    }
+
+
+    // Appel des gestionnaires d'événements
+    addEventListeners();
+    </script>
+
 </body>
+
 </html>
