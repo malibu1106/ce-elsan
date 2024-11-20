@@ -1,63 +1,68 @@
-<?php 
+<?php
 session_start();
 
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['info_message'] = "Vous devez être connecté pour accéder à cette page";
-    header("Location: ../index.php?");
-    exit();}
-if (($_SESSION['role']) !== "admin") {
-    $_SESSION['info_message'] = "Vous n'avez pas l'autorisation pour accéder à cette page";
-    header("Location: ../pages/home.php?");
-    exit();}
+// Vérifications combinées : connexion et rôle admin
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== "admin") {
+    $_SESSION['info_message'] = !isset($_SESSION['user_id']) 
+        ? "Vous devez être connecté pour accéder à cette page" 
+        : "Vous n'avez pas l'autorisation pour accéder à cette page";
+    
+    // Redirection selon l'état de la vérification
+    header("Location: " . (!isset($_SESSION['user_id']) ? "../index.php?" : "../pages/home.php?"));
+    exit();
+}
 
-include '../php_sql/db_connect.php'; // Inclure le fichier de connexion à la base de données
+// Inclure le fichier de connexion à la base de données
+require_once '../php_sql/db_connect.php';
 
 // Récupérer les utilisateurs en attente d'approbation
-$sql = "SELECT first_name, last_name, user_id FROM users where role = 'to_approve'";
+$sql = "SELECT first_name, last_name, user_id FROM users WHERE role = 'to_approve'";
 $query = $db->prepare($sql);
 $query->execute();
 $users_to_approve = $query->fetchAll(PDO::FETCH_ASSOC);
-
-
 ?>
 
 <!doctype html>
-<html>
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../output.css" rel="stylesheet">
-    <title>Elsan</title>
+    <title>Elsan - Gestion des utilisateurs</title>
 </head>
 
 <body class="pb-8">
-    <?php include '../includes/nav.php';?>
+    <?php include '../includes/nav.php'; ?>
 
     <h1 class="text-blue-600 font-bold text-4xl text-center m-8">Gérer les utilisateurs</h1>
+
     <main class="p-1 flex flex-col gap-4 flex-wrap max-w-screen-2xl mx-auto">
-
         <section class="w-[96%] bg-blue-800 mx-auto p-4 max-w-xl text-gray-100 rounded">
-            <?php
-    if ($users_to_approve){
-        echo'
-    <h2 class="m-4 mb-6 text-3xl text-center font-bold">Inscriptions en attente</h2>';
-    foreach ($users_to_approve as $user_to_approve){
-        echo '<div class="container flex justify-between items-center max-w-[420px] mx-auto">';
-        echo '<a href="../php_sql/change_user_status.php?role=blocked&user_id='.$user_to_approve['user_id'].'">';
-        echo '<img src="../images/icons/delete_white.png" alt"Refuser l\'inscription" class="h-12">';
-        echo '</a>';
-        echo '<p class="text-xl">'. $user_to_approve['first_name'] .' '. $user_to_approve['last_name'] . '</p>';
-        echo '<a href="../php_sql/change_user_status.php?role=user&user_id='.$user_to_approve['user_id'].'">';
-        echo '<img src="../images/icons/checked.png" alt"Accepter l\'inscription" class="h-12">';
-        echo '</a>';
-        echo '</div>';
-    }
+            <?php if ($users_to_approve): ?>
+            <!-- Si des utilisateurs sont en attente d'approbation -->
+            <h2 class="m-4 mb-6 text-3xl text-center font-bold">Inscriptions en attente</h2>
 
+            <?php foreach ($users_to_approve as $user_to_approve): ?>
+            <div class="container flex justify-between items-center max-w-[420px] mx-auto">
+                <!-- Lien pour refuser l'inscription -->
+                <a href="../php_sql/change_user_status.php?role=blocked&user_id=<?= $user_to_approve['user_id'] ?>">
+                    <img src="../images/icons/delete_white.png" alt="Refuser l'inscription" class="h-12">
+                </a>
 
-}
-    ?>
+                <!-- Affichage du nom de l'utilisateur -->
+                <p class="text-xl"><?= $user_to_approve['first_name'] . ' ' . $user_to_approve['last_name'] ?></p>
+
+                <!-- Lien pour accepter l'inscription -->
+                <a href="../php_sql/change_user_status.php?role=user&user_id=<?= $user_to_approve['user_id'] ?>">
+                    <img src="../images/icons/checked.png" alt="Accepter l'inscription" class="h-12">
+                </a>
+            </div>
+            <?php endforeach; ?>
+            <?php else: ?>
+            <!-- Message si aucun utilisateur n'est en attente d'approbation -->
+            <p class="text-xl text-center">Aucun utilisateur en attente d'approbation.</p>
+            <?php endif; ?>
         </section>
         <section class="w-[96%] bg-blue-600 mx-auto p-4 max-w-xl text-gray-100 rounded">
 

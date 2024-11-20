@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : lun. 18 nov. 2024 à 10:01
+-- Généré le : mer. 20 nov. 2024 à 13:04
 -- Version du serveur : 8.0.37
 -- Version de PHP : 8.2.8
 
@@ -199,7 +199,7 @@ CREATE TABLE `users` (
   `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'user'
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'to_approve'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -212,7 +212,8 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, 
 (3, 'Jean-Louis', 'David', 'jld@yahoo.fr', '$2y$10$zm5dX9QO.tvmnOYJYLG8dey/gjFpEYiIh1138iB9w37cmzp4AMRnS', 'to_approve'),
 (4, 'Franck', 'Gallois', 'ffrkk_g58@hotmail.com', '$2y$10$zm5dX9QO.tvmnOYJYLG8dey/gjFpEYiIh1138iB9w37cmzp4AMRnS', 'user'),
 (5, 'Nicolas', 'Ventoux', 's_petit_nico@gmail.com', '$2y$10$zm5dX9QO.tvmnOYJYLG8dey/gjFpEYiIh1138iB9w37cmzp4AMRnS', 'user'),
-(6, 'Lea', 'Pomette', 'lelep@msn.com', '$2y$10$zm5dX9QO.tvmnOYJYLG8dey/gjFpEYiIh1138iB9w37cmzp4AMRnS', 'user');
+(6, 'Lea', 'Pomette', 'lelep@msn.com', '$2y$10$zm5dX9QO.tvmnOYJYLG8dey/gjFpEYiIh1138iB9w37cmzp4AMRnS', 'user'),
+(7, 'Jean', 'Dupont', 'jean.dupont@example.com', '$2y$10$eAHb6.LSYfxcjr7bmWN6/.eJN4G9KBNRVGZzrxuw5kFhdC0JEQ9Ey', 'to_approve');
 
 -- --------------------------------------------------------
 
@@ -336,7 +337,7 @@ ALTER TABLE `suggestions`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `votes`

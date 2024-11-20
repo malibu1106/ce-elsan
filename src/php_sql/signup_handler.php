@@ -2,7 +2,8 @@
 session_start();
 
 if (isset($_POST) && !empty($_POST['first_name']) && !empty($_POST['last_name']) 
-    && !empty($_POST['su_email']) && !empty($_POST['su_password']) && !empty($_POST['su_retyped_password'])) {
+    && !empty($_POST['su_email']) && !empty($_POST['su_password'])
+    && !empty($_POST['su_retyped_password'])) {
 
     try {
         // Assainir et hacher les données de formulaire
