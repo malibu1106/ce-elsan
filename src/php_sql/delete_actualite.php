@@ -16,24 +16,24 @@ if ($_SESSION['role'] !== "admin") {
 
 require_once('../php_sql/db_connect.php');
 
-if (isset($_GET) && !empty($_GET['avantage_id'])) {
+if (isset($_GET) && !empty($_GET['actualite_id'])) {
     // Initialisation de la requête SQL
 
-        $sql = "DELETE FROM benefits WHERE benefit_id = :benefit_id";
+        $sql = "DELETE FROM news WHERE news_id = :actualite_id";
         $query = $db->prepare($sql);  // Prépare la requête
-        $query->bindValue(':benefit_id', $_GET['avantage_id'], PDO::PARAM_INT);
+        $query->bindValue(':actualite_id', $_GET['actualite_id'], PDO::PARAM_INT);
     
     // Exécute la requête
     $query->execute();
-        $_SESSION['info_message'] = "Avantage supprimé";
+        $_SESSION['info_message'] = "Actualité supprimée";
 
     // Redirection après modification
-    header("Location: ../pages/back_office_benefits.php");
+    header("Location: ../pages/back_office_news.php");
     exit();} 
 else {
     // Message d'erreur si la requête est invalide
     $_SESSION['info_message'] = "Erreur de traitement de la requête";
-    header("Location: ../pages/back_office_benefits.php");
+    header("Location: ../pages/back_office_news.php");
     exit();
 }
 ?>
